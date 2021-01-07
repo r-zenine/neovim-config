@@ -25,7 +25,6 @@ Plug 'w0rp/ale'
 Plug 'mhinz/vim-grepper'
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 " set leader to space
@@ -169,9 +168,31 @@ autocmd BufWritePost ~/.config/nvim/* :source $MYVIMRC
 autocmd BufWritePost ~/.config/nvim/* echo "Reloaded vim configuration"
 augroup END
 
-" Change projects, stolen from https://stackoverflow.com/questions/28287402/what-is-the-best-way-to-switch-between-projects-in-vim
+" Changes directory to the root of the repo when a file is open and registers the repository in the CtrlPBookmarkDir
 augroup project_discovery
   autocmd!
   autocmd User Fugitive let dir_path = fnamemodify(fugitive#repo().dir(), ':h') | :execute 'cd' dir_path|:execute 'silent CtrlPBookmarkDirAdd!' dir_path
 augroup END
+
+" Project wide search 
+let g:grepper = {}
+let g:grepper.tools = ['rg', 'git', 'grep']
+" Search for the current word
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+nnoremap <Leader>sw :Grepper -cword -noprompt<CR>
+nnoremap <Leader>ss :Grepper -cword -noprompt<CR>
+" Search for the current selection
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+"" Setup an abrev to run grepper instead of grep
+function! SetupCommandAlias(input, output)
+exec 'cabbrev <expr> '.a:input
+\ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:input.'")'
+\ .'? ("'.a:output.'") : ("'.a:input.'"))'
+endfunction
+call SetupCommandAlias("grep", "GrepperGrep")
+
+""" Fugitive setup
+nnoremap <Leader>gg :Git<CR>
 
