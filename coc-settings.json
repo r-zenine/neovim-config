@@ -1,5 +1,7 @@
 {
+  "coc.preferences.hoverTarget": "float",
   "diagnostic.displayByAle":true,
+  "codeLens.enable": true,
   "languageserver": {
     "go": {
       "command": "gopls",
