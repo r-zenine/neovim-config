@@ -489,8 +489,3 @@ autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tge :call CocActionAsync(
 autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tgf :call CocActionAsync('runCommand' ,'go.test.generate.function') <CR>
 autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tgF :call CocActionAsync('runCommand' ,'go.test.generate.file') <CR>
 augroup END
-
-" augroup coc
-" autocmd!
-" autocmd BufReadPre,FileReadPre * :CocRestart
-" augroup END
