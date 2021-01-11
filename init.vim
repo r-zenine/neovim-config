@@ -3,17 +3,20 @@
 "*****************************************************************************
 call plug#begin('~/.config/nvim/plugged')
 " Theme for neovim.
-Plug 'dracula/vim'
+Plug 'colepeters/spacemacs-theme.vim'
+Plug 'tomasiser/vim-code-dark'
 " fuzzy file finder / file navigation inside a project
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'spolu/dwm.vim'
 " Session 
 Plug 'tpope/vim-obsession'
+Plug 'mbbill/undotree'
+" Windows 
+Plug 'szw/vim-maximizer'
 " editing helpers
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-abolish'
 " run background jobs
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
@@ -36,6 +39,33 @@ Plug 'puremourning/vimspector'
 Plug 'hecal3/vim-leader-guide'
 call plug#end()
 
+
+syntax on
+
+set noshowmatch
+set relativenumber
+set nohlsearch
+set hidden
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nu
+set nowrap
+set smartcase
+set incsearch
+set termguicolors
+set scrolloff=8
+
+set background=dark
+colorscheme spacemacs-theme
+
+"" persistent undo 
+set undodir=~/.cache/nvim/undo
+set noswapfile
+set nobackup
+set undofile
 " Define prefix dictionary
 let g:lmap =  {}
 
@@ -66,6 +96,7 @@ if has('nvim')
 endif
 
 
+let g:maximizer_set_default_mapping = 1
 "Ale configuration
 let g:ale_disable_lsp=1
 " make <cr> select the first completion item and confirm the completion when no item has been selected
@@ -88,13 +119,8 @@ endfunction
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-"" persistent undo 
-set undofile
-if !has('nvim')
-	set undodir=~/.cache/nvim/undo
-endif
 " Font
-set guifont="Cascadia Code:h15"
+set guifont=Fira_Code,Retina
 "" Setup an abrev to run grepper instead of grep
 function! SetupCommandAlias(input, output)
 exec 'cabbrev <expr> '.a:input
@@ -118,7 +144,6 @@ vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 
 " Edit vimr configuration file
 let g:lmap.v = { 'name' : 'Vim Config' }
-let g:lmap.g = { 'name' : 'Git' }
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 let g:lmap.v.e = ['e $MYVIMRC', 'Open vimrc']
 " Reload vimr configuration file
@@ -169,7 +194,8 @@ nnoremap <Leader>wf :call DWM_Focus()<CR>
 let g:lmap.w.f = ['DWM_New', 'Focus']
 nnoremap <Leader>wr :call DWM_Rotate(1)<CR>
 let g:lmap.w.r = ['DWM_New', 'Rotate Window']
-
+nnoremap <Leader>wm :MaximizerToggle<CR>
+let g:lmap.w.m = ['MaximizerToggle', 'Maximize Window']
 
 if has('nvim')
 	tnoremap <silent> <Leader>wj <C-\><C-n><C-w>j
@@ -247,8 +273,20 @@ let g:lmap[''''] = [':terminal', 'Open terminal']
 
 """ Fugitive setup
 let g:lmap.g = { 'name' : 'Git' }
+
 nnoremap <Leader>gg :Git<CR>
 let g:lmap.g.g = [':Git', 'Git Status']
+
+nnoremap <Leader>gp :Git push<CR>
+let g:lmap.g.p = [':Git push', 'Git push']
+
+nnoremap <Leader>gf :Git fetch<CR>
+let g:lmap.g.f = [':Git fetch', 'Git fetch']
+
+nnoremap <Leader>gP :Git pull<CR>
+let g:lmap.g.P = [':Git pull', 'Git pull']
+
+
 
 
 """" coc.nvim 
@@ -415,8 +453,6 @@ function! s:bookmark_current_dir()
 if fugitive#head() != ''
   let dir_path = fnamemodify(fugitive#repo().dir(), ':h') 
   execute 'cd' dir_path
-  echo dir_path
-  echo stridx(dir_path, ".nvim/plugged")
   if stridx(dir_path, ".nvim/plugged") == -1 
 	  execute 'silent CtrlPBookmarkDirAdd!' dir_path
   endif
@@ -439,7 +475,6 @@ augroup rust
 autocmd!
 autocmd BufWritePost Filetype rust RustFmt 
 autocmd FileType rust let b:dispatch = 'cargo c'
-autocmd FileType rust let b:termdebugger = 'rust-gdb'
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cla :RustEmitAsm<CR>
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cli :RustEmitIr<CR>
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cle :RustExpand<CR>
@@ -449,16 +484,13 @@ augroup golang
 autocmd!
 autocmd FileType go let b:dispatch = 'go build ./...'
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clk :GoKeify<CR>
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clf :GoFillStruct<CR>
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>cle :GoIfErr<CR>
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>cli :GoImpl
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clw :GoWhicherrs<CR>
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clc :GoChannelPeers<CR>
-autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clI :GoImplements<CR>
+autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tt :call CocActionAsync('runCommand' ,'go.test.toggle') <CR>
+autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tge :call CocActionAsync('runCommand' ,'go.test.generate.exported') <CR>
+autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tgf :call CocActionAsync('runCommand' ,'go.test.generate.function') <CR>
+autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tgF :call CocActionAsync('runCommand' ,'go.test.generate.file') <CR>
 augroup END
 
-augroup coc
-autocmd!
-autocmd BufReadPre,FileReadPre * :CocRestart
-augroup END
+" augroup coc
+" autocmd!
+" autocmd BufReadPre,FileReadPre * :CocRestart
+" augroup END
