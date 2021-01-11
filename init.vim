@@ -21,7 +21,6 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-fugitive'
 " Programing languages
 Plug 'rust-lang/rust.vim' " RUST
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " GOLANG
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " PYTHON
 " Tests
 Plug 'janko-m/vim-test'
@@ -54,13 +53,6 @@ let test#strategy = "dispatch"
 " Configure current grep
 let g:grepper = {}
 let g:grepper.tools = ['rg', 'git', 'grep', 'ag']
-
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-let g:go_code_completion_enabled = 0
-let g:go_code_completion_icase = 0
-let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 1
 
 
 if has('nvim')
@@ -418,14 +410,27 @@ autocmd!
 autocmd BufWritePost ~/.config/nvim/* :source $MYVIMRC
 autocmd BufWritePost ~/.config/nvim/* echo "Reloaded vim configuration"
 augroup END
+
+function! s:bookmark_current_dir() 
+if fugitive#head() != ''
+  let dir_path = fnamemodify(fugitive#repo().dir(), ':h') 
+  execute 'cd' dir_path
+  echo dir_path
+  echo stridx(dir_path, ".nvim/plugged")
+  if stridx(dir_path, ".nvim/plugged") == -1 
+	  execute 'silent CtrlPBookmarkDirAdd!' dir_path
+  endif
+endif
+endfunction
+
 " Changes directory to the root of the repo when a file is open and registers the repository in the CtrlPBookmarkDir
 augroup project_discovery
   autocmd!
   " automatically change directory when entering a new project.
-  autocmd User Fugitive let dir_path = fnamemodify(fugitive#repo().dir(), ':h') | :execute 'cd' dir_path|:if stridx(dir_path, ".nvim/plugged") >= 0 | :execute 'silent CtrlPBookmarkDirAdd!' dir_path
+  autocmd User Fugitive :call <SID>bookmark_current_dir()
   " automatically change directory to the project root when entering a new
   " buffer.
-  autocmd BufEnter * if fugitive#head() != '' | let dir_path = fnamemodify(fugitive#repo().dir(), ':h') | :execute 'cd' dir_path|:if stridx(dir_path, ".nvim/plugged") >= 0 | :execute 'silent CtrlPBookmarkDirAdd!' dir_path | endif
+  autocmd BufEnter * :call <SID>bookmark_current_dir()
 augroup END
 
 " Programing languages autocmd
@@ -443,6 +448,7 @@ augroup END
 augroup golang
 autocmd!
 autocmd FileType go let b:dispatch = 'go build ./...'
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clk :GoKeify<CR>
 autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>clf :GoFillStruct<CR>
 autocmd BufEnter FileType go nnoremap <buffer><silent><Leader>cle :GoIfErr<CR>
