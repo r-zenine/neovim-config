@@ -1,5 +1,6 @@
 {
   "coc.preferences.hoverTarget": "float",
+  "coc.preferences.formatOnSaveFiletypes": ["rust", "golang", "json"],
   "diagnostic.displayByAle":true,
   "codeLens.enable": true,
   "languageserver": {
@@ -18,6 +19,7 @@
     },
     "metals": {
       "command": "metals-vim",
+      "trace.server":"verbose",
       "rootPatterns": ["build.sbt"],
       "filetypes": ["scala", "sbt"]
     }
