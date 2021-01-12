@@ -60,33 +60,19 @@ set scrolloff=8
 
 set background=dark
 colorscheme spacemacs-theme
-" Font
-set guifont=Fira_Code,Retina
 
 "" persistent undo 
 set undodir=~/.cache/nvim/undo
 set noswapfile
 set nobackup
 set undofile
+
 " Define prefix dictionary
-let g:lmap =  {}
+" " Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/target/*,*/plugged/*,*/node_modules/*    " MacOSX/Linux
 
-" set leader to space
-let mapleader=" "
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/target/*,*/plugged/*    " MacOSX/Linux
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|cargo|sbt)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
-" tests
-" make the test result populate the quicklist
-let test#strategy = "dispatch"
-
-" Configure current grep
-let g:grepper = {}
-let g:grepper.tools = ['rg', 'git', 'grep', 'ag']
-
-
+" terminal mode
 if has('nvim')
 	" map ESC to return to normal mode in terminal mode
 	tnoremap <Esc> <C-\><C-n>
@@ -98,9 +84,29 @@ if has('nvim')
 endif
 
 
-let g:maximizer_set_default_mapping = 1
+" Configure current grep
+let g:grepper = {}
+let g:grepper.tools = ['rg', 'git', 'grep', 'ag']
+
+" Linter configuration
 "Ale configuration
 let g:ale_disable_lsp=1
+let g:ale_linters = {'go': ['golangci-lint']}
+
+" maximizer
+let g:maximizer_set_default_mapping = 1
+"ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|cargo|sbt)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+" vim-tests
+let test#strategy = "dispatch"
+
+let g:lmap =  {}
+" set leader to space
+let mapleader=" "
+"
 " make <cr> select the first completion item and confirm the completion when no item has been selected
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 "
@@ -269,7 +275,7 @@ nnoremap <silent> <Leader>tl :TestLast<CR>
 let g:lmap.t.l = [':TestLast', 'Relaunch last test']
 
 " launch terminal
-nnoremap <silent> <Leader>' :terminal<CR>
+nnoremap <silent> <Leader>' :terminal<CR>i
 let g:lmap[''''] = [':terminal', 'Open terminal']
 
 """ Fugitive setup
@@ -482,9 +488,14 @@ augroup END
 augroup golang
 autocmd!
 autocmd FileType go let b:dispatch = 'go build ./...'
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport') | call CocAction('format')
 autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tt :call CocActionAsync('runCommand' ,'go.test.toggle') <CR>
 autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tge :call CocActionAsync('runCommand' ,'go.test.generate.exported') <CR>
 autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tgf :call CocActionAsync('runCommand' ,'go.test.generate.function') <CR>
 autocmd BufEnter *.go nnoremap <buffer><silent><Leader>tgF :call CocActionAsync('runCommand' ,'go.test.generate.file') <CR>
+augroup END
+
+augroup scala 
+autocmd! 
+autocmd FileType scala let b:dispatch = 'sbt compile'
 augroup END
