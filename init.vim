@@ -60,6 +60,8 @@ set scrolloff=8
 
 set background=dark
 colorscheme spacemacs-theme
+" Font
+set guifont=Fira_Code,Retina
 
 "" persistent undo 
 set undodir=~/.cache/nvim/undo
@@ -119,8 +121,6 @@ endfunction
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" Font
-set guifont=Fira_Code,Retina
 "" Setup an abrev to run grepper instead of grep
 function! SetupCommandAlias(input, output)
 exec 'cabbrev <expr> '.a:input
@@ -128,6 +128,7 @@ exec 'cabbrev <expr> '.a:input
 \ .'? ("'.a:output.'") : ("'.a:input.'"))'
 endfunction
 call SetupCommandAlias("grep", "GrepperGrep")
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -286,9 +287,6 @@ let g:lmap.g.f = [':Git fetch', 'Git fetch']
 nnoremap <Leader>gP :Git pull<CR>
 let g:lmap.g.P = [':Git pull', 'Git pull']
 
-
-
-
 """" coc.nvim 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -296,12 +294,13 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-
 let g:lmap.c = { 'name' : 'Code' }
-let g:lmap.c.l = { 'name' : 'Language Specific' }
 " Remap for rename current word
 nnoremap <leader>cr <Plug>(coc-rename)
 let g:lmap.c.r = ['<Plug>(coc-rename)', 'Rename']
+" Make sure `"codeLens.enable": true` is set in your coc config
+nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
+let g:lmap.c.r = ['<Plug>(coc-lens-action)', 'CodeLensAction']
 
 " Use K to either doHover or show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
