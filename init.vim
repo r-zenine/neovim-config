@@ -478,8 +478,8 @@ augroup END
 " rust autoformat on save
 augroup rust
 autocmd!
-autocmd BufWritePost Filetype rust RustFmt 
 autocmd FileType rust let b:dispatch = 'cargo c'
+autocmd BufWritePre *.rs :silent call CocAction('runCommand', 'editor.action.organizeImport') | call CocAction('format')
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cla :RustEmitAsm<CR>
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cli :RustEmitIr<CR>
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cle :RustExpand<CR>
@@ -498,4 +498,5 @@ augroup END
 augroup scala 
 autocmd! 
 autocmd FileType scala let b:dispatch = 'sbt compile'
+autocmd BufWritePre *.scala :silent call CocAction('runCommand', 'editor.action.organizeImport') | call CocAction('format')
 augroup END
