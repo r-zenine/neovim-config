@@ -31,8 +31,8 @@
   "rust-analyzer.procMacro.enable": true,
   "go.goplsOptions": {
    "completeUnimported": true
-  }
+  },
   "metals.showInferredType": true,
   "metals.showImplicitArguments": true,
-  "metals.showImplicitConversionsAndClasses": true,
+  "metals.showImplicitConversionsAndClasses": true
 }
