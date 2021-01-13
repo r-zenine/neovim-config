@@ -80,7 +80,7 @@ if has('nvim')
 	tnoremap <C-v><Esc> <Esc>
 	" distinguis terminal cursor and normal mode cursor
 	highlight! link TermCursor Cursor
-	highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
+	highlight! TermCursorNC guibg=lightblue guifg=white ctermbg=1 ctermfg=15
 endif
 
 
@@ -260,7 +260,6 @@ nnoremap <Leader>* :Grepper -cword -noprompt<CR>
 let g:lmap['*'] = ['<Plug>(GrepperOperator)', 'Search word']
 " Search for the current selection
 nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
 
 " Tests
 " Test current
@@ -302,11 +301,12 @@ nmap <silent> gr <Plug>(coc-references)
 
 let g:lmap.c = { 'name' : 'Code' }
 " Remap for rename current word
-nnoremap <leader>cr <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
+nmap <leader>cr <Plug>(coc-rename)
 let g:lmap.c.r = ['<Plug>(coc-rename)', 'Rename']
 " Make sure `"codeLens.enable": true` is set in your coc config
-nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
-let g:lmap.c.r = ['<Plug>(coc-lens-action)', 'CodeLensAction']
+nmap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
+let g:lmap.c.l = ['<Plug>(coc-lens-action)', 'CodeLensAction']
 
 " Use K to either doHover or show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -350,90 +350,55 @@ let g:lmap.d = { 'name' : 'Debug' }
 
 nnoremap <leader>dd :call vimspector#Launch()<CR>
 let g:lmap.d.c = [ 'VimspectorContinue', 'Continue']
-nnoremap <Leader>dc <Plug>VimspectorContinue
+nmap <Leader>dc <Plug>VimspectorContinue
 let g:lmap.d.c = [ 'VimspectorContinue', 'Continue']
-nnoremap <nowait><Leader>ds <Plug>VimspectorStop
+nmap <nowait><Leader>ds <Plug>VimspectorStop
 let g:lmap.d.s = [ 'VimspectorStop', 'Stop']
-nnoremap <Leader>dr <Plug>VimspectorRestart
+nmap <Leader>dr <Plug>VimspectorRestart
 let g:lmap.d.r = [ 'VimspectorRestart', 'Restart']
-nnoremap <Leader>dp <Plug>VimspectorPause
+nmap <Leader>dp <Plug>VimspectorPause
 let g:lmap.d.p = [ 'VimspectorPause', 'Pause']
-nnoremap <Leader>db <Plug>VimspectorToggleBreakpoint
+nmap <Leader>db <Plug>VimspectorToggleBreakpoint
 let g:lmap.d.b = [ 'VimspectorToggleBreakpoint', 'Toggle Breakpoint']
-nnoremap <Leader>dC <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>dC <Plug>VimspectorToggleConditionalBreakpoint
 let g:lmap.d.C = [ 'VimspectorToggleConditionalBreakpoint', 'Toggle Conditional Breakpoint']
-nnoremap <Leader>df <Plug>VimspectorAddFunctionBreakpoint
+nmap <Leader>df <Plug>VimspectorAddFunctionBreakpoint
 let g:lmap.d.f = [ 'VimspectorAddFunctionBreakpoint', 'Add Function Breakpoint']
-nnoremap <Leader>do <Plug>VimspectorStepOver
+nmap <Leader>do <Plug>VimspectorStepOver
 let g:lmap.d.o = [ 'VimspectorStepOver', 'Step Over']
-nnoremap <Leader>di <Plug>VimspectorStepInto
+nmap <Leader>di <Plug>VimspectorStepInto
 let g:lmap.d.i = [ 'VimspectorStepInto', 'Step Into']
-nnoremap <Leader>dO <Plug>VimspectorStepOut
+nmap <Leader>dO <Plug>VimspectorStepOut
 let g:lmap.d.O = [ 'VimspectorStepOut', 'Step Out']
-nnoremap <Leader>dR <Plug>VimspectorRunToCursor
+nmap <Leader>dR <Plug>VimspectorRunToCursor
 let g:lmap.d.R = [ 'VimspectorRunToCursor', 'Run To Cursor']
-nnoremap <Leader>dS :VimspectorReset<CR>
+nmap <Leader>dS :VimspectorReset<CR>
 let g:lmap.d.S = [ 'VimspectorReset', 'Reset']
 
+let g:lmap.e = { 'name' : 'Edit' }
+nnoremap <Leader>eu :ToggleUndoTree<CR>
+let g:lmap.e.u = [ 'ToggleUndoTree', 'Undo Tree']
 
 let g:lmap.q = { 'name' : 'Quickfix' }
 
-function! s:close_quick_fix_or_preview() 
-	exec windo if &buftype == "quickfix" || &buftype == "locationlist" | lclose | cclose | endif
-endfunction
-
-function! s:clnext() 
-	if &buftype == "quickfix" 
-		exec cnext
-	endif
-	if &buftype == "locationlist" 
-		exec lnext
-	endif
-endfunction
-function! s:clprevious() 
-	if &buftype == "quickfix" 
-		exec cprevious
-	endif
-	if &buftype == "locationlist" 
-		exec lprevious
-	endif
-endfunction
-
-function! s:clfirst() 
-	if &buftype == "quickfix" 
-		exec cfirst
-	endif
-	if &buftype == "locationlist" 
-		exec lfirst
-	endif
-endfunction
-function! s:cllast() 
-	if &buftype == "quickfix" 
-		exec clast
-	endif
-	if &buftype == "locationlist" 
-		exec llast
-	endif
-endfunction
-
-nnoremap <silent><C-g> <SID>close_quick_fix_or_preview<CR>
-nnoremap <silent><leader>qc  <SID>close_quick_fix_or_preview<CR>
+nnoremap <silent><C-g> :call CloseQuickFixOrPreview()<CR>
+nnoremap <silent><leader>qc  :cclose\|:lclose<CR>
 let g:lmap.q.c = [ 'close_quick_fix_or_preview', 'Close']
-nnoremap <silent><leader>qn  <SID>clnext<CR>
+nnoremap <silent><leader>qn  :cnext\|:lnext<CR>
 let g:lmap.q.n = [ 'clnext', 'Next']
-nnoremap <silent><leader>qp  <SID>clprevious<CR>
+nnoremap <silent><leader>qp  :cprev \|:lprev<CR>
 let g:lmap.q.p = [ 'clprevious', 'Previous']
-nnoremap <silent><leader>qf  <SID>clfirst<CR>
+nnoremap <silent><leader>qf  :cfirst\|:lfirst<CR>
 let g:lmap.q.f = [ 'clfirst', 'First']
-nnoremap <silent><leader>ql  <SID>cllast<CR>
+nnoremap <silent><leader>ql  :clast\|:last<CR>
 let g:lmap.q.l = [ 'cllast', 'Last']
 
 
 " Remap keys for applying codeAction to the current buffer.
-nnoremap <leader>ca  <Plug>(coc-codeaction)
+nmap <leader>ca  <Plug>(coc-codeaction)
 let g:lmap.c.a = ['coc-codeaction', 'Code Action']
 " Apply AutoFix to problem on the current line.
-nnoremap <leader>cf  <Plug>(coc-fix-current)
+nmap <leader>cf  <Plug>(coc-fix-current)
 let g:lmap.c.f = ['fix-current', 'Fix Current']
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
