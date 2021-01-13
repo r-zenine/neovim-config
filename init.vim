@@ -23,8 +23,9 @@ Plug 'radenling/vim-dispatch-neovim'
 " git wrapper
 Plug 'tpope/vim-fugitive'
 " Programing languages
-Plug 'rust-lang/rust.vim' " RUST
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " PYTHON
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Plug 'rust-lang/rust.vim' " RUST
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " PYTHON
 " Tests
 Plug 'janko-m/vim-test'
 " Linters
@@ -33,8 +34,6 @@ Plug 'w0rp/ale'
 Plug 'mhinz/vim-grepper'
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" DAP
-Plug 'puremourning/vimspector'
 " visual-leader
 Plug 'hecal3/vim-leader-guide'
 call plug#end()
@@ -95,13 +94,36 @@ let g:ale_linters = {'go': ['golangci-lint']}
 
 " maximizer
 let g:maximizer_set_default_mapping = 1
-"ctrlp
+" ctrlp
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn|cargo|sbt)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
 " vim-tests
 let test#strategy = "dispatch"
+" treesitter configuration
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"rust", "go", "python", "rust", "scala", "yaml", "json", "java", "cpp"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = {
+    enable = true
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 let g:lmap =  {}
 " set leader to space
