@@ -65,6 +65,16 @@ set undodir=~/.cache/nvim/undo
 set noswapfile
 set nobackup
 set undofile
+""" netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
 
 " Define prefix dictionary
 " " Set completeopt to have a better completion experience
@@ -122,8 +132,8 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
 
 let g:lmap =  {}
 " set leader to space
