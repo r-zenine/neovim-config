@@ -32,8 +32,6 @@ Plug 'pwntester/octo.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Tests
 Plug 'janko-m/vim-test'
-" Linters
-Plug 'w0rp/ale'
 " Grep and replace
 Plug 'ChristianChiarulli/far.vim'
 " LSP + DAP
@@ -103,11 +101,6 @@ endif
 
 let g:vimspector_install_gadgets = ['vscode-python', 'vscode-go', 'CodeLLDB']
 let g:blamer_enabled = 0
-
-" Linter configuration
-"Ale configuration
-let g:ale_disable_lsp=1
-let g:ale_linters = {'go': ['golangci-lint']}
 
 " Context
 let g:context_enabled = 0
@@ -272,22 +265,16 @@ let g:lmap.p.s.l = [':source Session.vim', 'load session']
 nnoremap <Leader>pss :mksession!<CR>
 let g:lmap.p.s.s = ['mksession!', 'Save session']
 
-" Configure the linter
-nmap <silent> [W <Plug>(ale_first)
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> ]w <Plug>(ale_next)
-nmap <silent> ]W <Plug>(ale_last)
-
 let g:lmap.l = { 'name' : 'Linter' }
-nnoremap <Leader>lf <Plug>(ale_first)
-let g:lmap.l.f = ['<Plug>(ale_first)', 'First linter error']
-nnoremap <Leader>ll <Plug>(ale_last)
-let g:lmap.l.l = ['<Plug>(ale_last)', 'Last linter error']
-nnoremap <Leader>ln <Plug>(ale_next)
-let g:lmap.l.n = ['<Plug>(ale_first)', 'Next linter error']
-nnoremap <Leader>lp <Plug>(ale_previous)
-let g:lmap.l.p = ['<Plug>(ale_first)', 'Previous linter error']
-nnoremap <silent><nowait> <Leader>ld :CocList diagnostics<CR>
+nnoremap <Leader>lf :call CocAction('diagnosticFirst')<CR>
+let g:lmap.l.f = ['CocAction diagnosticFirst', 'First linter error']
+nnoremap <Leader>ll :call CocAction('diagnosticLast')<CR>
+let g:lmap.l.l = ['CocAction diagnosticLast', 'Last linter error']
+nnoremap <Leader>ln :call CocAction('diagnosticNext')<CR>
+let g:lmap.l.n = ['CocAction diagnosticNext', 'Next linter error']
+nnoremap <Leader>lp :call CocAction('diagnosticPrevious')<CR>
+let g:lmap.l.p = ['CocAction diagnosticPrevious', 'Previous linter error']
+nnoremap <Leader>ld :CocList diagnostics<CR>
 let g:lmap.l.d = ['CocList diagnostics', 'Diagnostics list']
 
 " Search for the current word
