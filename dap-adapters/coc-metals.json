@@ -1,0 +1,19 @@
+{
+    "configurations": {
+        "coc-metals": {
+            "adapter": {
+                "port": "${port}",
+                "variables": {}
+            },
+            "configuration": {
+                "request": "launch"
+            },
+            "breakpoints": {
+                "exception": {
+                    "caught": "N",
+                    "uncaught": "N"
+                }
+            }
+        }
+    }
+}
