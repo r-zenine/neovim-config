@@ -4,44 +4,39 @@
 call plug#begin('~/.config/nvim/plugged')
 " Theme for neovim.
 Plug 'colepeters/spacemacs-theme.vim'
-Plug 'tomasiser/vim-code-dark'
-Plug 'jsit/toast.vim'
 " fuzzy file finder / file navigation inside a project
-Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/popup.nvim' 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'ctrlpvim/ctrlp.vim' " TODO get rid of it soon
+Plug 'ctrlpvim/ctrlp.vim'   " TODO get rid of it soon.
 " Session 
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree'      " TODO introduce in workflow or get rid of it.
 " Windows 
-Plug 'szw/vim-maximizer'
-" Code Navigation
-Plug 'wellle/context.vim'
+Plug 'szw/vim-maximizer'    " TODO maybe remove
 " editing helpers
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired' " TODO learn + configure keybindings
+Plug 'tpope/vim-commentary' " TODO learn + configure keybindings
+Plug 'tpope/vim-surround'   " TODO learn + configure keybindings
 " run background jobs
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 " git wrapper
-Plug 'tpope/vim-fugitive'
-Plug 'APZelos/blamer.nvim'
-Plug 'pwntester/octo.nvim'
+Plug 'tpope/vim-fugitive'   " TODO learn well and integrate in workflow
+Plug 'APZelos/blamer.nvim'  
+Plug 'pwntester/octo.nvim'  " TODO introduce in workflow or remove
 " Programing languages
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Tests
-Plug 'janko-m/vim-test'
+Plug 'janko-m/vim-test'     " Would be nice to configure it for scala
 " Grep and replace
-Plug 'ChristianChiarulli/far.vim'
+Plug 'ChristianChiarulli/far.vim'               " TODO configure and learn
 " LSP + DAP
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'puremourning/vimspector'
-Plug 'nvim-telescope/telescope-vimspector.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp later and reintroduce ale
+Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
 " Note Taking
-Plug 'oberblastmeister/neuron.nvim'
+Plug 'oberblastmeister/neuron.nvim'             " TODO learn
 " visual-leader
-Plug 'hecal3/vim-leader-guide'
+Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
 call plug#end()
 
 
@@ -86,7 +81,15 @@ set undofile
 " Define prefix dictionary
 " " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/target/*,*/plugged/*,*/node_modules/*    " MacOSX/Linux
+
+" Ignore temporary and build directory
+" TODO move to ftplugins
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip                    " For MacOSX/Linux
+set wildignore+=*/plugged/*,*/node_modules/*,*.swp          " For vim config
+set wildignore+=*/.bloop/*,*/.metals/*,*/target/*,*class    " For Scala
+set wildignore+=*/.cargo/*,*/target/*                       " For Rust
+set wildignore+=*.pyc,*/.pyenv/*                            " For Python 
+set wildignore+=*/node_modules/*                            " For Node
 
 " terminal mode
 if has('nvim')
@@ -99,35 +102,13 @@ if has('nvim')
 	highlight! TermCursorNC guibg=lightblue guifg=white ctermbg=1 ctermfg=15
 endif
 
-let g:vimspector_install_gadgets = ['vscode-python', 'vscode-go', 'CodeLLDB']
-let g:blamer_enabled = 0
-
-" Context
-let g:context_enabled = 0
-let g:context_add_mappings = 0
 " maximizer
 let g:maximizer_set_default_mapping = 1
-" ctrlp
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|cargo|sbt)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
-" vim-tests
-let test#strategy = "dispatch"
-" treesitter configuration
-if (executable('neuron') > 0)
-lua <<EOF
--- these are all the default values
-require'neuron'.setup {
-    virtual_titles = true,
-    mappings = true,
-    run = nil, -- function to run when in neuron dir
-    neuron_dir = "~/notes", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
-    leader = "gz", -- the leader key to for all mappings, remember with 'go zettel'
-}
-EOF
-endif
 
+" Blamer 
+let g:blamer_enabled = 0
+
+" treesitter configuration
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {"rust", "go", "python", "rust", "scala", "yaml", "json", "java", "cpp"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -148,8 +129,26 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+
+" vim-tests
+let test#strategy = "dispatch"
+
+" Vimspector
+let g:vimspector_install_gadgets = ['vscode-python', 'vscode-go', 'CodeLLDB']
+
+" neuron configuration
+if (executable('neuron') > 0)
+lua <<EOF
+-- these are all the default values
+require'neuron'.setup {
+    virtual_titles = true,
+    mappings = true,
+    run = nil, -- function to run when in neuron dir
+    neuron_dir = "~/notes", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
+    leader = "gz", -- the leader key to for all mappings, remember with 'go zettel'
+}
+EOF
+endif
 
 let g:lmap =  {}
 " set leader to space
@@ -192,10 +191,10 @@ vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 " Edit vimr configuration file
 let g:lmap.v = { 'name' : 'Vim Config' }
 nnoremap <Leader>ve :e $MYVIMRC<CR>
-let g:lmap.v.e = ['e $MYVIMRC', 'Open vimrc']
+let g:lmap.v.e = [':e $MYVIMRC', 'Open vimrc']
 " Reload vimr configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
-let g:lmap.v.r = ['source $MYVIMRC', 'Reload vim config']
+let g:lmap.v.r = [':source $MYVIMRC', 'Reload vim config']
 " Install plugins
 nnoremap <silent><Leader>vp :PlugInstall\| :UpdateRemotePlugins<CR><CR>
 let g:lmap.v.p = [':PlugInstall', 'Install plugins']
@@ -251,31 +250,29 @@ endif
 " Project
 let g:lmap.p = { 'name' : 'Project' }
 nnoremap <silent> <Leader>pf :Telescope find_files<CR>
-let g:lmap.p.f = [':CtrlP', 'Find file']
+let g:lmap.p.f = [':Telescope find_files', 'Find file']
 nnoremap <silent> <Leader>pp :CtrlPBookmarkDir<CR>
 let g:lmap.p.p = [':CtrlPBookmarkDir', 'Open project']
 nnoremap <silent> <Leader>pI :CtrlPClearCache<CR>
 let g:lmap.p.I = [':CtrlPClearCache', 'Clear cache']
 " Project/Sessions
 let g:lmap.p.s = { 'name' : 'Session' }
-nnoremap <Leader>psr :Obsession!<CR>
-let g:lmap.p.s.r = ['Obsession!', 'Toggle session auto save']
 nnoremap <Leader>psl :source Session.vim<CR>
 let g:lmap.p.s.l = [':source Session.vim', 'load session']
 nnoremap <Leader>pss :mksession!<CR>
-let g:lmap.p.s.s = ['mksession!', 'Save session']
+let g:lmap.p.s.s = [':mksession!', 'Save session']
 
 let g:lmap.l = { 'name' : 'Linter' }
 nnoremap <Leader>lf :call CocAction('diagnosticFirst')<CR>
-let g:lmap.l.f = ['CocAction diagnosticFirst', 'First linter error']
+let g:lmap.l.f = [':call CocAction(''diagnosticFirst'')', 'First linter error']
 nnoremap <Leader>ll :call CocAction('diagnosticLast')<CR>
-let g:lmap.l.l = ['CocAction diagnosticLast', 'Last linter error']
+let g:lmap.l.l = [':call CocActionr(''diagnosticLast'')', 'Last linter error']
 nnoremap <Leader>ln :call CocAction('diagnosticNext')<CR>
-let g:lmap.l.n = ['CocAction diagnosticNext', 'Next linter error']
+let g:lmap.l.n = [':call CocAction(''diagnosticNext'')', 'Next linter error']
 nnoremap <Leader>lp :call CocAction('diagnosticPrevious')<CR>
-let g:lmap.l.p = ['CocAction diagnosticPrevious', 'Previous linter error']
+let g:lmap.l.p = [':call CocAction(''diagnosticPrevious'')', 'Previous linter error']
 nnoremap <Leader>ld :CocList diagnostics<CR>
-let g:lmap.l.d = ['CocList diagnostics', 'Diagnostics list']
+let g:lmap.l.d = [':CocList diagnostics', 'Diagnostics list']
 
 " Search for the current word
 let g:lmap.s = { 'name' : 'Search' }
@@ -325,7 +322,7 @@ nnoremap <Leader>gb :Telescope git_bcommits<CR>
 let g:lmap.g.b = [':Telescope git_bcommits', 'Git log current buffer']
 
 nnoremap <Leader>gB :BlamerToggle<CR>
-let g:lmap.g.B = [':BlammerToggle', 'See line by line authors']
+let g:lmap.g.B = [':BlamerToggle', 'See line by line authors']
 
 nnoremap <Leader>gr :Octo pr list<CR>
 let g:lmap.g.r = [':Octo pr list', 'Github pull request']
@@ -334,7 +331,7 @@ nnoremap <Leader>gR :Octo pr reviews<CR>
 let g:lmap.g.R = [':Octo pr reviews', 'Github list reviews']
 
 nnoremap <Leader>gi :Octo issue list<CR>
-let g:lmap.g.i = [':Octo issues list', 'Github issues']
+let g:lmap.g.i = [':Octo issue list<CR>', 'Github issues']
 
 """" coc.nvim 
 " Remap keys for gotos
@@ -350,15 +347,15 @@ nmap <leader>cr <Plug>(coc-rename)
 let g:lmap.c.r = ['<Plug>(coc-rename)', 'Rename']
 " Make sure `"codeLens.enable": true` is set in your coc config
 nmap <leader>cl :call CocActionAsync('codeLensAction')<CR>
-let g:lmap.c.l = ['<Plug>(coc-lens-action)', 'CodeLensAction']
+let g:lmap.c.l = [':call CocActionAsync(''codeLensAction'')<CR>', 'CodeLensAction']
 
 nmap <leader>cs :Telescope treesitter<CR>
-let g:lmap.c.s = ['Telescope treesitter', 'Symbols']
+let g:lmap.c.s = [':Telescope treesitter', 'Symbols']
 
 " Use K to either doHover or show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <silent><leader>ch :call <SID>show_documentation()<CR>
-let g:lmap.c.h = ['show_documentation', 'Display Help ']
+let g:lmap.c.h = [':call <SID>show_documentation()<CR>', 'Display Help ']
 
 let g:lmap.c.p = { 'name' : 'Peek' }
 nnoremap <silent><nowait> <Leader>cpf :call CocActionAsync('jumpDefinition', v:false)<CR>
@@ -428,11 +425,8 @@ let g:lmap.e = { 'name' : 'Edit' }
 nnoremap <Leader>eu :ToggleUndoTree<CR>
 let g:lmap.e.u = [ 'ToggleUndoTree', 'Undo Tree']
 
-nnoremap <Leader>ec :ContextToggle<CR>
-let g:lmap.e.c = [ 'ContextToggle', 'Context Toggle']
 
 let g:lmap.q = { 'name' : 'Quickfix' }
-
 nnoremap <silent><C-g> :call CloseQuickFixOrPreview()<CR>
 nnoremap <silent><leader>qc  :cclose\|:lclose<CR>
 let g:lmap.q.c = [ 'close_quick_fix_or_preview', 'Close']
@@ -451,13 +445,7 @@ nmap <leader>ca  <Plug>(coc-codeaction)
 let g:lmap.c.a = ['coc-codeaction', 'Code Action']
 " Apply AutoFix to problem on the current line.
 nmap <leader>cf  <Plug>(coc-fix-current)
-let g:lmap.c.f = ['fix-current', 'Fix Current']
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
-" Symbols window
-
+let g:lmap.c.f = ['<Plug>(coc-fix-current)', 'Fix Current']
 " Disabling Persistent Undo for Temporary Files
 augroup vimrc
 autocmd!
@@ -492,6 +480,7 @@ augroup project_discovery
 augroup END
 
 " Programing languages autocmd
+" TODO move to ftplugins
 " rust autoformat on save
 augroup rust
 autocmd!
