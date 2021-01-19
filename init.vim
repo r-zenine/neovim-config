@@ -507,7 +507,7 @@ augroup END
 augroup scala 
 autocmd! 
 autocmd FileType scala let b:dispatch = 'sbt compile'
-autocmd BufWritePre *.scala :silent call CocAction('runCommand', 'editor.action.organizeImport') | call CocAction('format')
+" autocmd BufWritePre *.scala :silent call CocAction('runCommand', 'editor.action.organizeImport') | call CocAction('format')
 augroup END
 
 augroup Makefile
