@@ -108,6 +108,16 @@ let g:maximizer_set_default_mapping = 1
 " Blamer 
 let g:blamer_enabled = 0
 
+" Telescope 
+lua << EOF
+require('telescope').setup{
+    defaults = {
+      shorten_path = true,
+      file_sorter = require'telescope.sorters'.get_fzy_sorter,
+    },
+}
+EOF
+
 " treesitter configuration
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
