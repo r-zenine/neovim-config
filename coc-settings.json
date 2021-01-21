@@ -1,40 +1,56 @@
 {
-  "coc.preferences.hoverTarget": "float",
-  "coc.preferences.formatOnSaveFiletypes": ["rust", "golang", "json"],
-  "diagnostic.displayByAle":true,
-  "codeLens.enable": true,
-  "languageserver": {
-    "go": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "trace.server": "verbose",
-      "disableWorkspaceFolders": true,
-      "filetypes": ["go"]
+    "coc.preferences.hoverTarget": "float",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "rust",
+        "golang",
+        "json"
+    ],
+    "codeLens.enable": true,
+    "languageserver": {
+        "go": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "trace.server": "verbose",
+            "disableWorkspaceFolders": true,
+            "filetypes": [
+                "go"
+            ]
+        },
+        "rust": {
+            "command": "rust-analyzer",
+            "rootPatterns": [
+                "Cargo.toml"
+            ],
+            "trace.server": "verbose",
+            "filetypes": [
+                "rust"
+            ]
+        },
+        "metals": {
+            "command": "metals-vim",
+            "trace.server": "verbose",
+            "rootPatterns": [
+                "build.sbt"
+            ],
+            "filetypes": [
+                "scala",
+                "sbt"
+            ]
+        }
     },
-    "rust":{
-      "command": "rust-analyzer",
-      "rootPatterns": ["Cargo.toml"],
-      "trace.server":"verbose",
-      "filetypes":["rust"]
+    "rust-analyzer.diagnostics.enableExperimental": false,
+    "rust-analyzer.inlayHints.enable": true,
+    "rust-analyzer.inlayHints.typeHints": true,
+    "rust-analyzer.inlayHints.chainingHints": false,
+    "rust-analyzer.completion.postfix.enable": true,
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rust-analyzer.procMacro.enable": true,
+    "go.goplsOptions": {
+        "completeUnimported": true
     },
-    "metals": {
-      "command": "metals-vim",
-      "trace.server":"verbose",
-      "rootPatterns": ["build.sbt"],
-      "filetypes": ["scala", "sbt"]
-    }
-  },
-  "rust-analyzer.diagnostics.enableExperimental": false,
-  "rust-analyzer.inlayHints.enable":false,
-  "rust-analyzer.inlayHints.typeHints": false,
-  "rust-analyzer.inlayHints.chainingHints": false,
-  "rust-analyzer.completion.postfix.enable": true,
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
-  "rust-analyzer.procMacro.enable": true,
-  "go.goplsOptions": {
-   "completeUnimported": true
-  },
-  "metals.showInferredType": true,
-  "metals.showImplicitArguments": true,
-  "metals.showImplicitConversionsAndClasses": true
+    "metals.showInferredType": true,
+    "metals.showImplicitArguments": true,
+    "metals.showImplicitConversionsAndClasses": true
 }
