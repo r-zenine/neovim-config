@@ -37,6 +37,8 @@ Plug 'puremourning/vimspector'                  " TODO configure for scala / go 
 Plug 'oberblastmeister/neuron.nvim'             " TODO learn
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
+" local telescope-bookmarks-vim
+Plug '~/.config/nvim/pack/tlbd'
 call plug#end()
 
 
@@ -344,6 +346,10 @@ nnoremap <Leader>gi :Octo issue list<CR>
 let g:lmap.g.i = [':Octo issue list<CR>', 'Github issues']
 
 """" coc.nvim 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -475,6 +481,7 @@ if fugitive#head() != ''
   execute 'cd' dir_path
   if stridx(dir_path, ".nvim/plugged") == -1 
 	  execute 'silent CtrlPBookmarkDirAdd!' dir_path
+       call tlbd#bookmark(dir_path)
   endif
 endif
 endfunction
