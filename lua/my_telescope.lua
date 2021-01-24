@@ -33,4 +33,26 @@ function M.live_grep()
     }
 end
 
+function M.git_files_nvim()
+    require('telescope.builtin').git_files {
+        cwd='~/.config/nvim',
+        shorten_path=false,
+        layout_strategy='horizontal',
+        file_sorter = sorters.get_fzy_sorter,
+        generic_sorter = sorters.get_fzy_sorter,
+    }
+end
+
+function M.git_files()
+    require('telescope.builtin').git_files {
+        shorten_path=true,
+        layout_strategy='horizontal',
+        file_sorter = sorters.get_fzy_sorter,
+        generic_sorter = sorters.get_fzy_sorter,
+    }
+end
+
+
+
 return M
+
