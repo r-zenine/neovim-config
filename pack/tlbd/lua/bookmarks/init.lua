@@ -9,13 +9,15 @@ local function add_bookmark(path)
         end
     end
     if bookmarks[path] == nil then
-        table.insert(bookmarks, path)
-        fs_utils.write_lines(db_path, bookmarks)
+        if path:find("nvim/plugged") == nil then
+            table.insert(bookmarks, path)
+            fs_utils.write_lines(db_path, bookmarks)
+        end
     end
 end
 
 local function get_bookmarks()
-    if table.getn(bookmarks) == 0 then
+    if #bookmarks == 0 then
         bookmarks = fs_utils.lines_from(db_path)
     end
     return bookmarks
