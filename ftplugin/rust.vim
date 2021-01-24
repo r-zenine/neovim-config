@@ -12,4 +12,5 @@ autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cd :call CocAction('runCo
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>le :call CocAction('runCommand', 'rust-analyzer.explainError')<CR>
 augroup END
 
-
+" listing all available tests
+" cargo test --tests -- --list 2>/dev/null|grep '::'|sed 's/: test//'
