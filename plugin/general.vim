@@ -9,7 +9,8 @@ set nohlsearch                " Stop the highlighting for the 'hlsearch' option.
 set noerrorbells              " no bells
 set encoding=utf-8            " encoding utf-8
 set pumheight=10              " Makes popup menu smaller
-set ruler                     " show the cursor position all the time
+set noruler                   " show the cursor position all the time
+set noshowcmd
 set iskeyword+=-              " treat dash separated words as a word text object"
 set iskeyword+=_              " treat hyphen separated words as a word text object"
 set tabstop=4 softtabstop=4   " Insert 4 spaces for a tab
