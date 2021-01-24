@@ -39,6 +39,7 @@ set guifont=Fira\ Code,Retina:h14
 augroup vimconfig
 autocmd!
 autocmd BufWritePost ~/.config/nvim/* :source $MYVIMRC
+autocmd BufWritePost ~/.config/nvim/plugin/*.vim :source %
 autocmd BufWritePost ~/.config/nvim/* echo "Reloaded vim configuration"
 augroup END
 
@@ -52,4 +53,18 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip                    " For MacOSX/Linux
 set wildignore+=*/plugged/*,*/node_modules/*,*.swp          " For vim config
 set wildignore+=*/node_modules/*                            " For Node
 
+" quick-scope
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_enable_ex = 1
 
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+
+" Hide the files included in gitignore
+let g:rnvimr_hide_gitignore = 1
+
+" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+let g:rnvimr_enable_bw = 1
