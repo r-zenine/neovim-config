@@ -21,17 +21,28 @@ local function get_bookmarks()
     return bookmarks
 end
 
+local function action_change_directory()
+    local actions = require("telescope.actions")
+    local entry = actions.get_selected_entry()
+    vim.cmd(string.format(":cd %s", entry.value))
+    vim.cmd(string.format(":tcd %s", entry.value))
+    vim.cmd(":q")
+    require('telescope.builtin').git_files({
+        cwd = entry.value
+    })
+end
+
 local function move_to_directory()
     local pickers = require("telescope.pickers")
+    local sorters = require("telescope.sorters")
     local finders = require("telescope.finders")
-    local actions = require("telescope.actions")
-    pickers.new({}, {
+    local themes = require("telescope.themes")
+    pickers.new(themes.get_dropdown(), {
         prompt_title = 'Diretory bookmarks',
         finder = finders.new_table(get_bookmarks()),
+        sorter = sorters.get_fzy_sorter(),
         attach_mappings = function(_, map)
-          -- Map "<CR>" in insert mode to the funciton, actions.set_command_line
-          map('i', '<CR>', actions.set_command_line)
-
+          map('i', '<CR>', action_change_directory)
           return true
         end,
       }):find()
