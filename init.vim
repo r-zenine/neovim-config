@@ -8,8 +8,7 @@ Plug 'colepeters/spacemacs-theme.vim'
 Plug 'nvim-lua/popup.nvim' 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'lambdalisue/fern.vim'
-Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr'  " ranger integration
 " Windows and Tabs 
 Plug 'szw/vim-maximizer'
 Plug 'gcmt/taboo.vim'
@@ -19,6 +18,7 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-unimpaired' " TODO learn + configure keybindings
 Plug 'tpope/vim-commentary' " TODO learn + configure keybindings
 Plug 'tpope/vim-surround'   " TODO learn + configure keybindings
+Plug 'unblevable/quick-scope'       
 " run background jobs
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
@@ -33,6 +33,7 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 " LSP + DAP
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp later and reintroduce ale
+Plug 'metakirby5/codi.vim'
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key

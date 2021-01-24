@@ -70,12 +70,14 @@ tnoremap <silent> <Leader>wv <C-\><C-n>:vsplit<CR>
 
 " Project
 let g:lmap.p = { 'name' : 'Project' }
-nnoremap <silent> <Leader>pf :Telescope git_files<CR>
-let g:lmap.p.f = [':Telescope git_files', 'Find file']
+nnoremap <silent> <Leader>pf :lua require("my_telescope").git_files()<CR>
+let g:lmap.p.f = [':lua require("my_telescope").git_files()<CR>', 'Find file']
+nnoremap <silent> <Leader>pn :lua require("my_telescope").git_files_nvim()<CR>
+let g:lmap.p.n = [':lua require("my_telescope").git_files_nvim()<CR>', 'Find file']
 nnoremap <silent> <Leader>pp :call tlbd#move_to_directory()<CR>
 let g:lmap.p.p = [':CtrlPBookmarkDir', 'Open project']
-nnoremap <silent> <Leader>pd :Fern . -reveal=% -drawer -toggle<CR>
-let g:lmap.p.d = [':Fern . -reveal=% -drawer', 'Project drawer']
+nnoremap <silent> <Leader>pd :RnvimrToggle<CR>
+let g:lmap.p.d = [':RnvimrToggle<CR>', 'Project drawer']
 " Project/Sessions
 let g:lmap.p.s = { 'name' : 'Session' }
 nnoremap <Leader>psl :source Session.vim<CR>
