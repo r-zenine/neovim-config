@@ -143,6 +143,9 @@ let g:lmap.g.l = [':Telescope git_commits', 'Git log']
 nnoremap <Leader>gb :Telescope git_bcommits<CR>
 let g:lmap.g.b = [':Telescope git_bcommits', 'Git log current buffer']
 
+nnoremap <Leader>gs :Telescope git_status<CR>
+let g:lmap.g.s = [':Telescope git_status', 'Git log current buffer']
+
 nnoremap <Leader>gB :BlamerToggle<CR>
 let g:lmap.g.B = [':BlamerToggle', 'See line by line authors']
 
