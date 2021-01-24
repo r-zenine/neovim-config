@@ -189,27 +189,27 @@ let g:lmap.c.h = [':ShowDoc', 'Display Help ']
 
 let g:lmap.c.p = { 'name' : 'Peek' }
 nnoremap <silent><nowait> <Leader>cpf :call CocActionAsync('jumpDefinition', v:false)<CR>
-let g:lmap.c.p.f = [':call CocActionAsync(jumpDefinition, v:false)', 'Peek Definition']
+let g:lmap.c.p.f = [':call CocActionAsync("jumpDefinition", v:false)', 'Peek Definition']
 nnoremap <silent><nowait> <Leader>cpc :call CocActionAsync('jumpDeclaration', v:false)<CR>
-let g:lmap.c.p.c = [':call CocActionAsync(jumpDeclaration, v:false)', 'Peek Declaration']
+let g:lmap.c.p.c = [':call CocActionAsync("jumpDeclaration", v:false)', 'Peek Declaration']
 nnoremap <silent><nowait> <Leader>cpi :call CocActionAsync('jumpImplementation', v:false)<CR>
-let g:lmap.c.p.i = [':call CocActionAsync(jumpImplementation, v:false)', 'Peek Implementations']
+let g:lmap.c.p.i = [':call CocActionAsync("jumpImplementation", v:false)', 'Peek Implementations']
 nnoremap <silent><nowait> <Leader>cpt :call CocActionAsync('jumpTypeDefinition', v:false)<CR>
-let g:lmap.c.p.t = [':call CocActionAsync(jumpTypeDefinition, v:false)', 'Peek Type Definition']
+let g:lmap.c.p.t = [':call CocActionAsync("jumpTypeDefinition", v:false)', 'Peek Type Definition']
 nnoremap <silent><nowait> <Leader>cpr :call CocActionAsync('jumpReferences', v:false)<CR>
-let g:lmap.c.p.r = [':call CocActionAsync(jumpReferences, v:false)', 'Peek References']
+let g:lmap.c.p.r = [':call CocActionAsync("jumpReferences", v:false)', 'Peek References']
 
 let g:lmap.c.g = { 'name' : 'Go to' }
 nnoremap <silent><nowait> <Leader>cgf :call CocActionAsync('jumpDefinition')<CR>
-let g:lmap.c.g.f = [':call CocActionAsync(jumpDefinition)', 'Go to Definition']
+let g:lmap.c.g.f = [':call CocActionAsync("jumpDefinition")', 'Go to Definition']
 nnoremap <silent><nowait> <Leader>cgc :call CocActionAsync('jumpDeclaration')<CR>
-let g:lmap.c.g.c = [':call CocActionAsync(jumpDeclaration)', 'Go to Declaration']
+let g:lmap.c.g.c = [':call CocActionAsync("jumpDeclaration")', 'Go to Declaration']
 nnoremap <silent><nowait> <Leader>cgi :call CocActionAsync('jumpImplementation')<CR>
-let g:lmap.c.g.i = [':call CocActionAsync(jumpImplementation)', 'Go to Implementations']
+let g:lmap.c.g.i = [':call CocActionAsync("jumpImplementation")', 'Go to Implementations']
 nnoremap <silent><nowait> <Leader>cgt :call CocActionAsync('jumpTypeDefinition')<CR>
-let g:lmap.c.g.t = [':call CocActionAsync(jumpTypeDefinition)', 'Go to Type Definition']
+let g:lmap.c.g.t = [':call CocActionAsync("jumpTypeDefinition")', 'Go to Type Definition']
 nnoremap <silent><nowait> <Leader>cgr :call CocActionAsync('jumpReferences')<CR>
-let g:lmap.c.g.r = [':call CocActionAsync(jumpReferences)', 'Go to References']
+let g:lmap.c.g.r = [':call CocActionAsync("jumpReferences")', 'Go to References']
 
 
 
@@ -254,6 +254,8 @@ let g:lmap.e = { 'name' : 'Edit' }
 nnoremap <Leader>eu :ToggleUndoTree<CR>
 let g:lmap.e.u = [ 'ToggleUndoTree', 'Undo Tree']
 
+nnoremap <Leader>em :lua require("telescope.builtin").marks()<CR>
+let g:lmap.e.m = [ ':lua require("telescope.builtin").marks()<CR>', 'List marks']
 
 let g:lmap.q = { 'name' : 'Quickfix' }
 nnoremap <silent><C-g> :call CloseQuickFixOrPreview()<CR>
