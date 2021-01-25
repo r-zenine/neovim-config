@@ -134,6 +134,9 @@ let g:lmap.g.f = [':Git fetch', 'Git fetch']
 nnoremap <Leader>gP :Git pull<CR>
 let g:lmap.g.P = [':Git pull', 'Git pull']
 
+nnoremap <Leader>gd :Gdiffsplit<CR>
+let g:lmap.g.d = [':Gdiffsplit', 'Git diff']
+
 nnoremap <Leader>gc :Telescope git_branches<CR>
 let g:lmap.g.c = [':Telescope git_branches', 'Git checkout']
 
@@ -148,16 +151,6 @@ let g:lmap.g.s = [':Telescope git_status', 'Git log current buffer']
 
 nnoremap <Leader>gB :BlamerToggle<CR>
 let g:lmap.g.B = [':BlamerToggle', 'See line by line authors']
-
-nnoremap <Leader>gr :Octo pr list<CR>
-let g:lmap.g.r = [':Octo pr list', 'Github pull request']
-
-nnoremap <Leader>gR :Octo pr reviews<CR>
-let g:lmap.g.R = [':Octo pr reviews', 'Github list reviews']
-
-nnoremap <Leader>gi :Octo issue list<CR>
-let g:lmap.g.i = [':Octo issue list<CR>', 'Github issues']
-
 """" coc.nvim 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
