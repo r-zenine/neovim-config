@@ -15,6 +15,8 @@ let g:lmap.v.r = [':source $MYVIMRC', 'Reload vim config']
 " Install plugins
 nnoremap <silent><Leader>vp :PlugInstall\| :UpdateRemotePlugins<CR><CR>
 let g:lmap.v.p = [':PlugInstall', 'Install plugins']
+nnoremap <silent> <Leader>vf :lua require("my_telescope").git_files_nvim()<CR>
+let g:lmap.v.f = [':lua require("my_telescope").git_files_nvim()<CR>', 'Find file']
 
 " Buffers navigation
 let g:lmap.b = { 'name' : 'Buffers' }
@@ -72,8 +74,6 @@ tnoremap <silent> <Leader>wv <C-\><C-n>:vsplit<CR>
 let g:lmap.p = { 'name' : 'Project' }
 nnoremap <silent> <Leader>pf :lua require("my_telescope").git_files()<CR>
 let g:lmap.p.f = [':lua require("my_telescope").git_files()<CR>', 'Find file']
-nnoremap <silent> <Leader>pn :lua require("my_telescope").git_files_nvim()<CR>
-let g:lmap.p.n = [':lua require("my_telescope").git_files_nvim()<CR>', 'Find file']
 nnoremap <silent> <Leader>pp :call tlbd#move_to_directory()<CR>
 let g:lmap.p.p = [':CtrlPBookmarkDir', 'Open project']
 nnoremap <silent> <Leader>pd :RnvimrToggle<CR>
@@ -125,6 +125,9 @@ let g:lmap.g = { 'name' : 'Git' }
 nnoremap <Leader>gg :Git<CR>
 let g:lmap.g.g = [':Git', 'Git Status']
 
+nnoremap <Leader>gd :Gdiffsplit<CR>
+let g:lmap.g.g = [':Gdiffsplit', 'Git Diff']
+
 nnoremap <Leader>gp :Git push<CR>
 let g:lmap.g.p = [':Git push', 'Git push']
 
@@ -133,9 +136,6 @@ let g:lmap.g.f = [':Git fetch', 'Git fetch']
 
 nnoremap <Leader>gP :Git pull<CR>
 let g:lmap.g.P = [':Git pull', 'Git pull']
-
-nnoremap <Leader>gd :Gdiffsplit<CR>
-let g:lmap.g.d = [':Gdiffsplit', 'Git diff']
 
 nnoremap <Leader>gc :Telescope git_branches<CR>
 let g:lmap.g.c = [':Telescope git_branches', 'Git checkout']
@@ -151,6 +151,7 @@ let g:lmap.g.s = [':Telescope git_status', 'Git log current buffer']
 
 nnoremap <Leader>gB :BlamerToggle<CR>
 let g:lmap.g.B = [':BlamerToggle', 'See line by line authors']
+"
 """" coc.nvim 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
