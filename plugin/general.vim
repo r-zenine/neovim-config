@@ -36,19 +36,6 @@ let loaded_matchparen = 1
 
 set guifont=Fira\ Code,Retina:h14
 
-" Automatically reload the vim configuration when it's updated
-augroup vimconfig
-autocmd!
-autocmd BufWritePost ~/.config/nvim/* :source $MYVIMRC
-autocmd BufWritePost ~/.config/nvim/plugin/*.vim :source %
-autocmd BufWritePost ~/.config/nvim/* echo "Reloaded vim configuration"
-augroup END
-
-augroup Lua_autoreload
-autocmd!
-autocmd BufWritePost *.lua :luafile %
-augroup END
-
 " Ignore temporary and build directory
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip                    " For MacOSX/Linux
 set wildignore+=*/plugged/*,*/node_modules/*,*.swp          " For vim config

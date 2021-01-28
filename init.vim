@@ -18,6 +18,7 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-unimpaired' " TODO learn + configure keybindings
 Plug 'tpope/vim-commentary' " TODO learn + configure keybindings
 Plug 'tpope/vim-surround'   " TODO learn + configure keybindings
+Plug 'mg979/vim-visual-multi' 
 Plug 'unblevable/quick-scope'       
 " run background jobs
 Plug 'tpope/vim-dispatch'
@@ -37,6 +38,8 @@ Plug 'metakirby5/codi.vim'
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
+" neuron-nvim
+Plug 'oberblastmeister/neuron.nvim'
 " local telescope-bookmarks-vim
 Plug '~/.config/nvim/pack/tlbd'
 call plug#end()
@@ -44,6 +47,7 @@ call plug#end()
 " Telescope 
 lua require('my_telescope')
 lua require('my_treesitter')
+lua require('my_neuron')
 
 
 
