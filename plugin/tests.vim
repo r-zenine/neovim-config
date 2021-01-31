@@ -1,4 +1,4 @@
 " vim-tests
-let test#strategy = "dispatch"
+let test#strategy = "neoterm"
 
 

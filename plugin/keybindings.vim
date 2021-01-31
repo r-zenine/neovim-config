@@ -274,3 +274,20 @@ let g:lmap.c.a = ['<Plug>(coc-codeaction)', 'Code Action']
 " Apply AutoFix to problem on the current line.
 nmap <leader>cf  <Plug>(coc-fix-current)
 let g:lmap.c.f = ['<Plug>(coc-fix-current)', 'Fix Current']
+
+let g:lmap.z = { 'name' : 'Zettlekasten Notes' }
+nnoremap <Leader>zz :lua require("neuron/telescope").find_zettels()<CR>
+let g:lmap.z.z = [':lua require("neuron/telescope").notes()<CR>', 'List notes']
+
+nnoremap <Leader>zi :lua require("neuron").goto_index()<CR>
+let g:lmap.z.i =  [':lua require("neuron").goto_index()', 'Go to index']
+
+nnoremap <leader>zn :lua require('neuron/cmd').new_edit(require('neuron').config.neuron_dir)<CR>
+let g:lmap.z.n = [':lua require("neuron/cmd").new_edit(require("neuron").config.neuron_dir)<CR>', 'New note']
+
+nnoremap <leader>zT :lua require('my_neuron').search_todos()<CR>
+let g:lmap.z.T = [':lua require("my_neuron").search_todos()<CR>', 'New note']
+
+
+
+
