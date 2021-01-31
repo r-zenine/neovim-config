@@ -1,5 +1,6 @@
 {
     "coc.preferences.hoverTarget": "float",
+    "diagnostic.displayByAle": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "rust",
         "golang",

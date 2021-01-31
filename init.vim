@@ -32,9 +32,13 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'janko-m/vim-test'
 " Terminal 
 Plug 'kassio/neoterm'
+" Writing 
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-lexical', {'do': 'LexMed'}
+Plug 'dbmrq/vim-ditto'
 " LSP + DAP
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp later and reintroduce ale
-Plug 'metakirby5/codi.vim'
+Plug 'w0rp/ale'                       
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
@@ -48,6 +52,3 @@ call plug#end()
 lua require('my_telescope')
 lua require('my_treesitter')
 lua require('my_neuron')
-
-
-

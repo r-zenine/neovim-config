@@ -3,6 +3,8 @@ pip3 install --user --upgrade pynvim
 pip3 install --user --upgrade neovim-remote
 sudo apt install -y nodejs npm
 nvim -c "PlugInstall|q|q"
+# download thesaurus for vim-lexical
+curl https://raw.githubusercontent.com/zeke/moby/master/words.txt ./thesaurus/words.txt
 
 # Vimspector configuration:
 ./plugged/vimspector/install_gadget.py --enable-python --enable-cpp --enable-rust --enable-go

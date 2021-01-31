@@ -1,4 +1,5 @@
 setlocal wildignore+=*/.cargo/*,*/target/*                       " For Rust
+let b:dispatch = 'cargo c'
 "
 " Disabling Persistent Undo for Temporary Files
 " Programing languages autocmd
@@ -6,7 +7,6 @@ setlocal wildignore+=*/.cargo/*,*/target/*                       " For Rust
 " rust autoformat on save
 augroup rust
 autocmd!
-autocmd FileType rust let b:dispatch = 'cargo c'
 " autocmd BufWritePre *.rs :silent call CocAction('runCommand', 'editor.action.organizeImport') | call CocAction('format')
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>cd :call CocAction('runCommand', 'rust-analyzer.openDocs')<CR>
 autocmd BufEnter *.rs nnoremap <buffer><silent><Leader>le :call CocAction('runCommand', 'rust-analyzer.explainError')<CR>
