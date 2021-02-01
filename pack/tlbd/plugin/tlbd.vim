@@ -24,6 +24,7 @@ augroup project_discovery
   " automatically change directory to the project root when entering a new
   " buffer.
   autocmd BufEnter * :call <SID>bookmark_current_dir()
+  autocmd BufWinEnter * :call <SID>bookmark_current_dir()
 augroup END
 
 
