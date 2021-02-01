@@ -30,6 +30,7 @@ local function action_change_directory()
     vim.cmd(string.format(":tcd %s", entry.value))
     vim.cmd(":q")
     require('telescope.builtin').git_files({
+        shorten_path=true,
         cwd = entry.value
     })
 end
