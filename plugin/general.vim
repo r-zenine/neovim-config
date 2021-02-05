@@ -25,10 +25,10 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set updatetime=500            " Faster completion
-set timeoutlen=500            " By default timeoutlen is 1000 ms
+set timeoutlen=250            " By default timeoutlen is 1000 ms
 set clipboard=unnamedplus     " Copy paste between vim and everything else
 set lazyredraw                " improve scrolling performance when navigating through large results
-set colorcolumn=90
+set colorcolumn=80
 set inccommand=split
 set nofoldenable
 
