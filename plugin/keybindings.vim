@@ -16,7 +16,7 @@ let g:lmap.v.r = [':source $MYVIMRC', 'Reload vim config']
 nnoremap <silent><Leader>vp :PlugInstall\| :UpdateRemotePlugins<CR><CR>
 let g:lmap.v.p = [':PlugInstall', 'Install plugins']
 nnoremap <silent> <Leader>vf :lua require("my_telescope").git_files_nvim()<CR>
-let g:lmap.v.f = [':lua require("my_telescope").git_files_nvim()<CR>', 'Find file']
+let g:lmap.v.f = [':lua require("my_telescope").git_files_nvim()', 'Find file']
 
 " Buffers navigation
 let g:lmap.b = { 'name' : 'Buffers' }
@@ -45,14 +45,14 @@ nnoremap <silent> <Leader>wh <C-W>h
 let g:lmap.w.h = ['<C-W>h', 'Window Right']
 
 nnoremap <silent> <Leader>wt :tabnext<CR>
-let g:lmap.w.t = [':tabNext<CR>', 'Next Tab']
+let g:lmap.w.t = [':tabNext', 'Next Tab']
 
 nnoremap <silent> <Leader>wT :tabnew<CR>
-let g:lmap.w.T = [':tabnew<CR>', 'New Tab']
+let g:lmap.w.T = [':tabnew', 'New Tab']
 
 " Close window
 nnoremap <silent> <Leader>wc <C-W>c
-let g:lmap.w.c = ['<C-W>c', 'Close Window']
+let g:lmap.w.c = [':close', 'Close Window']
 " Window Splits
 nnoremap <silent> <Leader>ws :split<CR>
 let g:lmap.w.s = [':split', 'Split']
@@ -73,11 +73,11 @@ tnoremap <silent> <Leader>wv <C-\><C-n>:vsplit<CR>
 " Project
 let g:lmap.p = { 'name' : 'Project' }
 nnoremap <silent> <Leader>pf :lua require("my_telescope").git_files()<CR>
-let g:lmap.p.f = [':lua require("my_telescope").git_files()<CR>', 'Find file']
+let g:lmap.p.f = [':lua require("my_telescope").git_files()', 'Find file']
 nnoremap <silent> <Leader>pp :call tlbd#move_to_directory()<CR>
-let g:lmap.p.p = [':CtrlPBookmarkDir', 'Open project']
+let g:lmap.p.p = [':call tlbd#move_to_directory()', 'Open project']
 nnoremap <silent> <Leader>pd :RnvimrToggle<CR>
-let g:lmap.p.d = [':RnvimrToggle<CR>', 'Project drawer']
+let g:lmap.p.d = [':RnvimrToggle', 'Project drawer']
 " Project/Sessions
 let g:lmap.p.s = { 'name' : 'Session' }
 nnoremap <Leader>psl :source Session.vim<CR>
@@ -117,7 +117,7 @@ nnoremap <silent> <Leader>tl :TestLast<CR>
 let g:lmap.t.l = [':TestLast', 'Relaunch last test']
 
 nnoremap <silent> <Leader>' :botright Ttoggle<CR>
-let g:lmap[''''] = [':terminal', 'Open terminal']
+let g:lmap[''''] = [':botright Ttoggle', 'Open terminal']
 
 """ Fugitive setup
 let g:lmap.g = { 'name' : 'Git' }
@@ -170,7 +170,7 @@ nmap <leader>cr <Plug>(coc-rename)
 let g:lmap.c.r = ['<Plug>(coc-rename)', 'Rename']
 " Make sure `"codeLens.enable": true` is set in your coc config
 nmap <leader>cl :call CocActionAsync('codeLensAction')<CR>
-let g:lmap.c.l = [':call CocActionAsync(''codeLensAction'')<CR>', 'CodeLensAction']
+let g:lmap.c.l = [':call CocActionAsync(''codeLensAction'')', 'CodeLensAction']
 
 nmap <leader>cs :Telescope treesitter<CR>
 let g:lmap.c.s = [':Telescope treesitter', 'Symbols']
@@ -254,20 +254,20 @@ let g:lmap.e.u = [ 'ToggleUndoTree', 'Undo Tree']
 nnoremap <Leader>ed :r!date "+\%F"<CR>0  
 
 nnoremap <Leader>em :lua require("telescope.builtin").marks()<CR>
-let g:lmap.e.m = [ ':lua require("telescope.builtin").marks()<CR>', 'List marks']
+let g:lmap.e.m = [ ':lua require("telescope.builtin").marks()', 'List marks']
 
 let g:lmap.q = { 'name' : 'Quickfix' }
-nnoremap <silent><C-g> :call CloseQuickFixOrPreview()<CR>
+nnoremap <silent><C-g> :cclose\|:lclose<CR>
 nnoremap <silent><leader>qc  :cclose\|:lclose<CR>
-let g:lmap.q.c = [ 'close_quick_fix_or_preview', 'Close']
+let g:lmap.q.c = [ ':cclose|:lclose', 'Close']
 nnoremap <silent><leader>qn  :cnext\|:lnext<CR>
-let g:lmap.q.n = [ 'clnext', 'Next']
+let g:lmap.q.n = [ ':cnext|:lnext', 'Next']
 nnoremap <silent><leader>qp  :cprev \|:lprev<CR>
-let g:lmap.q.p = [ 'clprevious', 'Previous']
+let g:lmap.q.p = [ ':cprev |:lprev', 'Previous']
 nnoremap <silent><leader>qf  :cfirst\|:lfirst<CR>
-let g:lmap.q.f = [ 'clfirst', 'First']
+let g:lmap.q.f = [ ':cfirst|:lfirst', 'First']
 nnoremap <silent><leader>ql  :clast\|:last<CR>
-let g:lmap.q.l = [ 'cllast', 'Last']
+let g:lmap.q.l = [ ':clast|:last', 'Last']
 
 
 " Remap keys for applying codeAction to the current buffer.
@@ -279,16 +279,16 @@ let g:lmap.c.f = ['<Plug>(coc-fix-current)', 'Fix Current']
 
 let g:lmap.z = { 'name' : 'Zettlekasten Notes' }
 nnoremap <Leader>zz :lua require("neuron/telescope").find_zettels()<CR>
-let g:lmap.z.z = [':lua require("neuron/telescope").notes()<CR>', 'List notes']
+let g:lmap.z.z = [':lua require("neuron/telescope").notes()', 'List notes']
 
 nnoremap <Leader>zi :lua require("neuron").goto_index()<CR>
 let g:lmap.z.i =  [':lua require("neuron").goto_index()', 'Go to index']
 
 nnoremap <leader>zn :lua require('neuron/cmd').new_edit(require('neuron').config.neuron_dir)<CR>
-let g:lmap.z.n = [':lua require("neuron/cmd").new_edit(require("neuron").config.neuron_dir)<CR>', 'New note']
+let g:lmap.z.n = [':lua require("neuron/cmd").new_edit(require("neuron").config.neuron_dir)', 'New note']
 
 nnoremap <leader>zT :lua require('my_neuron').search_todos()<CR>
-let g:lmap.z.T = [':lua require("my_neuron").search_todos()<CR>', 'New note']
+let g:lmap.z.T = [':lua require("my_neuron").search_todos()', 'New note']
 
 
 
