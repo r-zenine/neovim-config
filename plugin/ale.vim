@@ -11,6 +11,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_linters = {
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \   'markdown': ['proselint'],
             \   'python': ['prospector'],
             \   'go': ['golangci-lint'],
