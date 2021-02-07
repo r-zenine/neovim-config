@@ -39,7 +39,7 @@ Plug 'reedes/vim-lexical', {'do': 'LexMed'}
 Plug 'dbmrq/vim-ditto'
 " LSP + DAP
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp later and reintroduce ale
-Plug 'w0rp/ale'                       
+Plug 'dense-analysis/ale'                       
 Plug 'hkupty/iron.nvim'
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
 Plug 'rafi/vim-venom'                           " to automatically activate python virtualenv
