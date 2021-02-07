@@ -117,6 +117,7 @@ nnoremap <silent> <Leader>tl :TestLast<CR>
 let g:lmap.t.l = [':TestLast', 'Relaunch last test']
 
 nnoremap <silent> <Leader>' :botright Ttoggle<CR>
+nnoremap <silent> <Leader>\ :IronFocus<CR>
 let g:lmap[''''] = [':botright Ttoggle', 'Open terminal']
 
 """ Fugitive setup
@@ -289,7 +290,4 @@ let g:lmap.z.n = [':lua require("neuron/cmd").new_edit(require("neuron").config.
 
 nnoremap <leader>zT :lua require('my_neuron').search_todos()<CR>
 let g:lmap.z.T = [':lua require("my_neuron").search_todos()', 'New note']
-
-
-
 
