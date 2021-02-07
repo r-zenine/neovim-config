@@ -42,7 +42,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp lat
 Plug 'w0rp/ale'                       
 Plug 'hkupty/iron.nvim'
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
-Plug 'rafi/vim-venom', { 'for': 'python' }
+Plug 'rafi/vim-venom'                           " to automatically activate python virtualenv
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
 " neuron-nvim
@@ -56,5 +56,3 @@ lua require('my_telescope')
 lua require('my_treesitter')
 lua require('my_neuron')
 lua require('my_iron')
-source ~/.config/nvim/plugged/vim-venom/plugin/venom.vim
-source ~/.config/nvim/plugged/vim-venom/autoload/venom.vim
