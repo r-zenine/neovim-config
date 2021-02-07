@@ -28,7 +28,7 @@ local function action_change_directory()
     local entry = actions.get_selected_entry()
     vim.cmd(string.format(":cd %s", entry.value))
     vim.cmd(string.format(":tcd %s", entry.value))
-    vim.cmd(":q")
+    vim.cmd(":q!")
     require('telescope.builtin').git_files({
         shorten_path=true,
         cwd = entry.value

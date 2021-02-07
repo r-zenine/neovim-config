@@ -40,7 +40,9 @@ Plug 'dbmrq/vim-ditto'
 " LSP + DAP
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp later and reintroduce ale
 Plug 'w0rp/ale'                       
+Plug 'hkupty/iron.nvim'
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
+Plug 'rafi/vim-venom', { 'for': 'python' }
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
 " neuron-nvim
@@ -53,3 +55,6 @@ call plug#end()
 lua require('my_telescope')
 lua require('my_treesitter')
 lua require('my_neuron')
+lua require('my_iron')
+source ~/.config/nvim/plugged/vim-venom/plugin/venom.vim
+source ~/.config/nvim/plugged/vim-venom/autoload/venom.vim
