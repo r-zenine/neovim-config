@@ -28,6 +28,7 @@ Plug 'tpope/vim-fugitive'   " TODO learn well and integrate in workflow
 Plug 'APZelos/blamer.nvim'  
 " Programing languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'plasticboy/vim-markdown'
 " Tests
 Plug 'janko-m/vim-test'
 " Terminal 

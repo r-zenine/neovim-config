@@ -250,6 +250,8 @@ let g:lmap.d.S = [ 'VimspectorReset', 'Reset']
 let g:lmap.e = { 'name' : 'Edit' }
 nnoremap <Leader>eu :ToggleUndoTree<CR>
 let g:lmap.e.u = [ 'ToggleUndoTree', 'Undo Tree']
+" insert data in the next line
+nnoremap <Leader>ed :r!date "+\%F"<CR>0  
 
 nnoremap <Leader>em :lua require("telescope.builtin").marks()<CR>
 let g:lmap.e.m = [ ':lua require("telescope.builtin").marks()<CR>', 'List marks']

@@ -30,6 +30,7 @@ set clipboard=unnamedplus     " Copy paste between vim and everything else
 set lazyredraw                " improve scrolling performance when navigating through large results
 set colorcolumn=90
 set inccommand=split
+set nofoldenable
 
 set background=dark
 colorscheme spacemacs-theme
