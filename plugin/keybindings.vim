@@ -126,8 +126,11 @@ let g:lmap.g = { 'name' : 'Git' }
 nnoremap <Leader>gg :Git<CR>
 let g:lmap.g.g = [':Git', 'Git Status']
 
-nnoremap <Leader>gd :Gdiffsplit<CR>
-let g:lmap.g.g = [':Gdiffsplit', 'Git Diff']
+nnoremap <Leader>gdh :diffget //2<CR>
+let g:lmap.g.g = [':diffget //2', 'Git Diff get left']
+
+nnoremap <Leader>gdl :diffget //3<CR>
+let g:lmap.g.g = [':diffget //3', 'Git Diff get right']
 
 nnoremap <Leader>gp :Git push<CR>
 let g:lmap.g.p = [':Git push', 'Git push']
