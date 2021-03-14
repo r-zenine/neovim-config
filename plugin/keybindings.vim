@@ -27,8 +27,8 @@ let g:lmap.b.p = [':bp', 'Previous Buffer']
 nnoremap <silent> <Leader>bn :bn<CR>
 let g:lmap.b.n = [':bn', 'Next Buffer']
 " list buffers
-nnoremap <silent> <Leader>bl :Telescope buffers<CR>
-let g:lmap.b.l = [':Telescope buffers', 'List buffers']
+nnoremap <silent> <Leader>bl :lua require("my_telescope").buffers()<CR>
+let g:lmap.b.l = [':lua require("my_telescope").buffers()', 'List buffers']
 " delete buffer
 nnoremap <silent> <Leader>bd :bdelete<CR>
 let g:lmap.b.d = [':bdelete', 'Delete buffer']
