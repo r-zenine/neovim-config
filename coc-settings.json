@@ -64,5 +64,6 @@
     },
     "Lua.diagnostics.globals": [
         "vim"
-    ]
+    ],
+    "snippets.userSnippetsDirectory": "~/.config/nvim/snips"
 }

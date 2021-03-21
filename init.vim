@@ -39,8 +39,8 @@ Plug 'reedes/vim-lexical', {'do': 'LexMed'}
 Plug 'dbmrq/vim-ditto'
 " LSP + DAP
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " TODO replace by native lsp later and reintroduce ale
+Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'                       
-Plug 'hkupty/iron.nvim'
 Plug 'puremourning/vimspector'                  " TODO configure for scala / go and c++
 Plug 'rafi/vim-venom'                           " to automatically activate python virtualenv
 " visual-leader
@@ -49,10 +49,11 @@ Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
 Plug 'oberblastmeister/neuron.nvim'
 " local telescope-bookmarks-vim
 Plug '~/.config/nvim/pack/tlbd'
+" jira integration
+Plug 'n0v1c3/vira', { 'do': './install.sh' }
 call plug#end()
 
 " Telescope 
 lua require('my_telescope')
 lua require('my_treesitter')
 lua require('my_neuron')
-lua require('my_iron')

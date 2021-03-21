@@ -1,0 +1,176 @@
+snippet meeting_daily_team "Daily Meeting log entry" b
+## `date +%Y-%m-%d`
+### #bertrand-junqua
+**Yesterday**:
+	- ${1:A short summary of the work done}
+**Today**:
+	- ${2:What work is planned for today}
+**Attention Points**:
+	- ${3:Some attention points, I discussed}
+**Assignments**:
+	- ${4:Things I asked to be done}
+
+### #pawel-gontarz
+	- ${5:A short summary of the work done}
+**Today**:
+	- ${6:What work is planned for today}
+**Attention Points**:
+	- ${7:Some attention points, I discussed}
+**Assignments**:
+	- ${8:Things I asked to be done}
+
+
+### #vincent-cavaille-coll
+	- ${9:A short summary of the work done}
+**Today**:
+	- ${10:What work is planned for today}
+**Attention Points**:
+	- ${11:Some attention points, I discussed}
+**Assignments**:
+	- ${12:Things I asked to be done}
+
+
+### #thierry-sitbon
+	- ${13:A short summary of the work done}
+**Today**:
+	- ${14:What work is planned for today}
+**Attention Points**:
+	- ${15:Some attention points, I discussed}
+**Assignments**:
+	- ${16:Things I asked to be done}
+endsnippet
+
+snippet meeting_weekly_team "Weekly meeting log entry" b
+## `date +%Y-%m-%d` -> Week `date +%V`
+### Project #project-
+**Last Week Achievements**:
+	- 
+**Attention Points**:
+	-
+**What comes next**:
+	-
+endsnippet
+
+snippet meeting_log "general meeting log" b
+# Meeting about ${1:topic of the meeting} on `date +%Y-%m-%d`
+**Attendees**:
+
+	- ${2:People Attending the meeting}
+
+## Discussed points:
+
+	- ${3: What we talked about}
+
+## Action items:
+	
+	- ${4: action items}
+
+## My Todos from the meeting:
+
+	- #TODO ${5: my todos}
+
+## Tags:
+
+	- ${6: tags}
+endsnippet
+
+snippet manager_one_one "Meeting notes for manager" b
+## one to one with #patrick-le-drogo on `date +%Y-%m-%d`:
+### Discussed points:
+
+	- ${1: discussed points}
+
+## Action items:
+	
+	- ${2: action items}
+
+## My Todos from the meeting:
+
+	- #TODO ${3: my todos}
+
+endsnippet
+
+snippet meeting_prep_manager_one_one "Preparation notes for manager one to one meeting" b
+## preparation one to one with #patrick-le-drogo on `date +%Y-%m-%d`:
+### Discussion points:
+	- ${1: points I want to discuss points}
+
+## Update on todo's from last meeting :
+	
+	- ${2: what happened with last meeting todo's}
+
+endsnippet
+
+snippet meeting_weekly_one_one "Weekly one one" b
+## one to one with #${1:person} on `date +%Y-%m-%d`:
+### Discussed points:
+
+	- ${2: discussed points}
+
+## Action items:
+	
+	- ${3: action items}
+
+## My Todos from the meeting:
+
+	- #TODO ${4: my todos}
+endsnippet
+
+snippet log_workday "My workday start log" b
+## `date +%Y-%m-%d`:
+### Top 3 priorities:
+	- [ ] ${1: most important thing to do}
+	- [ ] ${2: second most important thing to do}
+	- [ ] ${3: third  most important thing to do}
+### Activity Log:
+	-
+
+### PR Reviews:
+	- 
+
+### Design documents reviews:
+	- 
+
+### Meeting notes:
+	-
+endsnippet
+
+snippet checklist_end_of_day "My workday start log" b
+**Checklist end of day**:
+	- [ ] Review JIRA
+	- [ ] Review TODO's in notes
+	- [ ] Review weekly meetings
+		- [ ] Ask for topic for each bizare meeting
+		- [ ] Ask for meetings to be moved to free 3 hours blocks
+	- [ ] Figure out the 3 most important actions for the next day
+	- [ ] Write them in the log
+endsnippet
+
+snippet review_pr "PR Review note" b
+## PR-Review `date +%Y-%m-%d` 
+**Repository**: $1
+**Author**: $2
+
+[PR GITHUB LINK](https://github.com/ContentSquare/$1/pull/$3)
+
+**General Observations**: 
+- $4
+
+**Basic Quality Checklist**:
+	- [$5] Is the PR too big with multiple changes ?
+	- [$6] Is the PR changing formatting in addition to code ? 
+	- [$7] Is the PR changing some unrelated stuff ? 
+	- [$8] Is the design good ?
+endsnippet
+
+snippet jira_ticket_de "Jira Ticket link DE" w
+[DE-$1](https://contentsquare.atlassian.net/browse/DE-$1)
+endsnippet
+
+snippet jira_ticket_sup "Jira Ticket link SUPPORT" w
+[SUP-$1](https://contentsquare.atlassian.net/browse/SUP-$1)
+endsnippet
+
+snippet jira_ticket_app "Jira Ticket link APP" w
+[APP-$1](https://contentsquare.atlassian.net/browse/APP-$1)
+endsnippet
