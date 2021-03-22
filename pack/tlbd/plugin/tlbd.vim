@@ -28,3 +28,11 @@ augroup project_discovery
 augroup END
 
 
+
+function! s:go_to_root() 
+if fugitive#head() != ''
+  let dir_path = fnamemodify(fugitive#repo().dir(), ':h') 
+  execute 'cd' dir_path
+endif
+endfunction
+

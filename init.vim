@@ -4,27 +4,23 @@
 call plug#begin('~/.config/nvim/plugged')
 " Theme for neovim.
 Plug 'colepeters/spacemacs-theme.vim'
-" fuzzy file finder / file navigation inside a project
-Plug 'nvim-lua/popup.nvim' 
-Plug 'nvim-lua/plenary.nvim'
+" file navigation inside a project
+Plug 'nvim-lua/popup.nvim' " telescope dependency
+Plug 'nvim-lua/plenary.nvim' " telescope dependency
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kevinhwang91/rnvimr'  " ranger integration
 " Windows and Tabs 
-Plug 'szw/vim-maximizer'
-Plug 'gcmt/taboo.vim'
-" Session 
-Plug 'mbbill/undotree'      
+Plug 'szw/vim-maximizer' " maximizes the current buffer
+Plug 'gcmt/taboo.vim' " provides helpers function for working with tabs 
 " editing helpers
-Plug 'tpope/vim-unimpaired' " TODO learn + configure keybindings
-Plug 'tpope/vim-commentary' " TODO learn + configure keybindings
-Plug 'tpope/vim-surround'   " TODO learn + configure keybindings
+Plug 'tpope/vim-commentary' 
 Plug 'mg979/vim-visual-multi' 
 Plug 'unblevable/quick-scope'       
 " run background jobs
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 " git wrapper
-Plug 'tpope/vim-fugitive'   " TODO learn well and integrate in workflow
+Plug 'tpope/vim-fugitive'
 Plug 'APZelos/blamer.nvim'  
 " Programing languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

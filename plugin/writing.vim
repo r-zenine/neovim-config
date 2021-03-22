@@ -7,6 +7,6 @@ set wildignore+=*/thesaurus/*,*/.neuron/*                           " For Node
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 0}) 
-  autocmd FileType markdown,mkd DittoOn
+  autocmd FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
   autocmd FileType markdown,mkd call lexical#init()
 augroup END
