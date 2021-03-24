@@ -12,9 +12,14 @@ let g:ale_linters = {
             \   'go': ['golangci-lint'],
             \   'scala': ['scalastyle'],
             \   'text': ['proselint'],
+            \   'c': ['clang'],
+            \   'c++': ['clang'],
             \   }
 
 let g:ale_fixers = {
   \   '*': ['remove_trailing_lines', 'trim_whitespace'],
   \   'markdown': ['textlint'],
   \   }
+
+let g:ale_cpp_clang_options = '-Wall -Wextra -std=c++17'
+let g:ale_cpp_cc_options = '-std=c++17 -Wall -Wextra'
