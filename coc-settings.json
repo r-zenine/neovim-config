@@ -19,17 +19,7 @@
                 "go"
             ]
         },
-        "rust": {
-            "command": "rust-analyzer",
-            "rootPatterns": [
-                "Cargo.toml"
-            ],
-            "trace.server": "verbose",
-            "filetypes": [
-                "rust"
-            ]
-        },
-        "metals": {
+       "metals": {
             "command": "metals-vim",
             "trace.server": "verbose",
             "rootPatterns": [
@@ -66,6 +56,6 @@
         "vim"
     ],
     "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
-    "clangd.path": "/Users/ryadzenine/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
+    "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
     "clangd.disableDiagnostics": true
 }

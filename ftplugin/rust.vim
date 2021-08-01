@@ -1,4 +1,5 @@
 setlocal wildignore+=*/.cargo/*,*/target/*                       " For Rust
+let g:ale_rust_cargo_use_clippy
 let b:dispatch = 'cargo c'
 "
 " Disabling Persistent Undo for Temporary Files

@@ -4,6 +4,9 @@
 call plug#begin('~/.config/nvim/plugged')
 " Theme for neovim.
 Plug 'colepeters/spacemacs-theme.vim'
+Plug 'rakr/vim-one'
+Plug 'rakr/vim-two-firewatch'
+Plug 'rainglow/vim'
 " file navigation inside a project
 Plug 'nvim-lua/popup.nvim' " telescope dependency
 Plug 'nvim-lua/plenary.nvim' " telescope dependency
@@ -42,7 +45,7 @@ Plug 'rafi/vim-venom'                           " to automatically activate pyth
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
 " neuron-nvim
-Plug 'oberblastmeister/neuron.nvim'
+" Plug 'oberblastmeister/neuron.nvim'
 " local telescope-bookmarks-vim
 Plug '~/.config/nvim/pack/tlbd'
 " jira integration
@@ -52,4 +55,4 @@ call plug#end()
 " Telescope 
 lua require('my_telescope')
 lua require('my_treesitter')
-lua require('my_neuron')
+" lua require('my_neuron')
