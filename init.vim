@@ -36,12 +36,12 @@ Plug 'rafi/vim-venom'                           " to automatically activate pyth
 " visual-leader
 Plug 'hecal3/vim-leader-guide'                  " TODO replace by which-key
 " notes
-Plug  'vhyrro/neorg'
-" local telescope-bookmarks-vim
+Plug 'kristijanhusak/orgmode.nvim'
+Plug 'akinsho/org-bullets.nvim'
 Plug '~/.config/nvim/pack/tlbd'
 call plug#end()
 
 " Telescope 
 lua require('my_telescope')
 lua require('my_treesitter')
-" lua require('my_neuron')
+lua require('my_orgmode')
