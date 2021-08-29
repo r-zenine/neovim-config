@@ -4,9 +4,4 @@ let g:maximizer_set_default_mapping = 1
 " you are required to set the following option in your .vimrc file
 set sessionoptions+=tabpages,globals
 
-augroup Tabs 
-autocmd!
-autocmd BufEnter * :TabooRename '%P'
-augroup END
-
 

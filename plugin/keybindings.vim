@@ -76,8 +76,6 @@ nnoremap <silent> <Leader>pf :lua require("my_telescope").git_files()<CR>
 let g:lmap.p.f = [':lua require("my_telescope").git_files()', 'Find file']
 nnoremap <silent> <Leader>pp :call tlbd#move_to_directory()<CR>
 let g:lmap.p.p = [':call tlbd#move_to_directory()', 'Open project']
-nnoremap <silent> <Leader>pd :RnvimrToggle<CR>
-let g:lmap.p.d = [':RnvimrToggle', 'Project drawer']
 " Project/Sessions
 let g:lmap.p.s = { 'name' : 'Session' }
 nnoremap <Leader>psl :source Session.vim<CR>
