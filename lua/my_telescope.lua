@@ -52,6 +52,18 @@ function M.git_files_nvim()
     }
 end
 
+function M.org_notes()
+    require('telescope.builtin').find_files {
+        prompt_title='<ORG notes>',
+        cwd='~/Documents/org',
+        shorten_path=false,
+        layout_strategy='horizontal',
+        file_sorter = sorters.get_fzy_sorter,
+        generic_sorter = sorters.get_fzy_sorter,
+    }
+end
+
+
 function M.git_files()
     require('telescope.builtin').git_files {
         shorten_path=false,
@@ -68,6 +80,18 @@ function M.buffers()
         winblend = 10,
         sort_lastused = true,
     })
+end
+
+function M.marks()
+    require('telescope.builtin').marks()
+end
+
+function M.quickfix()
+    require('telescope.builtin').quickfix()
+end
+
+function M.locllist()
+    require('telescope.builtin').loclist()
 end
 
 return M
