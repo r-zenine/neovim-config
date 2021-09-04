@@ -44,8 +44,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip                    " For MacOSX/Linux
 set wildignore+=*/plugged/*,*/node_modules/*,*.swp          " For vim config
 set wildignore+=*/node_modules/*                            " For Node
 
+set path+=stdpath('data')
 " quick-scope
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "
+let mapleader=" "
+let maplocalleader=","
+
 
