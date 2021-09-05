@@ -51,6 +51,12 @@ function M.on_attach(client, bufnr)
     if client.resolved_capabilitieseexecute_command then
         kb.local_bind("Execute Command", 'e', '"<cmd>lua vim.lsp.buf.execute_command()<CR>', opts_kb)
     end
+    kb.local_section('t', 'Tests')
+    kb.local_bind('Nearest', 'tt', ':TestNearest<CR>', opts_kb)
+    kb.local_bind('Last', 'tl', ':TestLast<CR>', opts_kb)
+    kb.local_bind('File', 'tf', ':TestFile<CR>', opts_kb)
+
+
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
