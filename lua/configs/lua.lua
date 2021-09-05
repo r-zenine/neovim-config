@@ -41,8 +41,12 @@ local lua_config = {
 local M= {}
 
 function M.setup()
+    local luadev = require'lua-dev'.setup({
+        lspconfig = lua_config,
+        plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+    })
     local lspconfig = require('lspconfig')
-    lspconfig.sumneko_lua.setup(lua_config)
+    lspconfig.sumneko_lua.setup(luadev)
 end
 
 return M
