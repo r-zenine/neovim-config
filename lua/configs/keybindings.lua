@@ -79,3 +79,6 @@ kb.bind('Open config file', 'vf' ,':lua require("my_telescope").git_files_nvim()
 kb.bind('Install plugins', 'vp' ,':PlugInstall<CR>', opts)
 kb.bind('Clean plugins', 'vc' ,':PlugClean<CR>', opts)
 
+
+vimp.nmap('gr', '<Plug>(neoterm-repl-send)')
+vimp.xmap('gr', '<Plug>(neoterm-repl-send)')

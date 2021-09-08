@@ -92,9 +92,11 @@ Plug 'akinsho/org-bullets.nvim'
 """"""""""""""""""""""""""""""""
 " Terminal & Repl              "
 """"""""""""""""""""""""""""""""
-Plug 'kassio/neoterm' " TODO configure Repl
+Plug 'kassio/neoterm' " Terminal wrappers and Repl support
  
-" Programming languages specifics
+""""""""""""""""""""""""""""""""
+"   Programming languages      "
+""""""""""""""""""""""""""""""""
 
 " Markdown
 Plug 'plasticboy/vim-markdown'
@@ -111,7 +113,10 @@ Plug 'edolphin-ydf/goimpl.nvim'
 Plug 'folke/lua-dev.nvim'
 
 " Python
-Plug 'rafi/vim-venon'                 " TODO replace with a function of mine
+Plug 'rafi/vim-venon'
+
+" Scala
+Plug 'scalameta/nvim-metals' " TODO setup nvim metals for scala
 
 " My plugins
 Plug '~/.config/nvim/pack/tlbd'

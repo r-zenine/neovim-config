@@ -57,6 +57,14 @@ function M.on_attach(client, bufnr)
     kb.local_bind('File', 'tf', ':TestFile<CR>', opts_kb)
 
 
+    kb.local_section('s', 'Send to Repl')
+    kb.local_bind('Send File', 'sf', ':TREPLSendFile<CR>', opts_kb)
+    kb.local_bind('Send Line', 'sl', ':TREPLSendLine<CR>', opts_kb)
+    kb.local_bind('Send Selection', 'ss', ':TREPLSendSelection<CR>', opts_kb)
+    kb.local_bind('Send File', 'sf', ':TREPLSendFile<CR>', opts_kb)
+
+
+
     -- Set autocommands conditional on server_capabilities
     -- if client.resolved_capabilities.document_highlight then
     --     vim.api.nvim_exec([[
