@@ -13,4 +13,10 @@ function M.dump(o)
    end
 end
 
+function M.insert_all(collection, ...)
+    for _, element in ipairs{...} do
+        table.insert(collection, element)
+    end
+end
+
 return M
