@@ -1,7 +1,6 @@
 local kb = require'prelude.keybindings'
 local vimp = require'vimp'
 
-
 local opts = {noremap = false, silent = false}
 
 kb.section('b', 'Buffers')

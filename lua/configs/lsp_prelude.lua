@@ -1,5 +1,4 @@
 local kb = require('prelude.keybindings')
-
 local M = {}
 
 function M.on_attach(client, bufnr)
@@ -56,34 +55,28 @@ function M.on_attach(client, bufnr)
     kb.local_bind('Last', 'tl', ':TestLast<CR>', opts_kb)
     kb.local_bind('File', 'tf', ':TestFile<CR>', opts_kb)
 
-
     kb.local_section('s', 'Send to Repl')
     kb.local_bind('Send File', 'sf', ':TREPLSendFile<CR>', opts_kb)
     kb.local_bind('Send Line', 'sl', ':TREPLSendLine<CR>', opts_kb)
     kb.local_bind('Send Selection', 'ss', ':TREPLSendSelection<CR>', opts_kb)
     kb.local_bind('Send File', 'sf', ':TREPLSendFile<CR>', opts_kb)
-
-
-
-    -- Set autocommands conditional on server_capabilities
-    -- if client.resolved_capabilities.document_highlight then
-    --     vim.api.nvim_exec([[
-    --     hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-    --     hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-    --     hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-    --     augroup lsp_document_highlight
-    --     autocmd! * <buffer>
-    --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-    --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    --     augroup END
-    --     ]], false)
-    -- end
 end
 
 
 function M.prelude_attach(client, bufnr)
    M.on_attach(client, bufnr)
-   require'completion'.on_attach()
+   require'compe'.setup {
+       source = {
+           path = true;
+           buffer = true;
+           calc = true;
+           nvim_lsp = true;
+           nvim_lua = true;
+           vsnip = false;
+           ultisnips = false;
+           luasnip = false;
+       };
+    }
 end
 
 return M
