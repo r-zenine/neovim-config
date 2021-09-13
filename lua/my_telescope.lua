@@ -46,8 +46,10 @@ function M.git_files_nvim()
         prompt_title='<VIMRC>',
         cwd='~/.config/nvim',
         shorten_path=false,
+        file_ignore_patterns = {'*/pack/plug/*'},
         layout_strategy='horizontal',
         file_sorter = sorters.get_fzy_sorter,
+        recurse_submodules=false,
         generic_sorter = sorters.get_fzy_sorter,
     }
 end

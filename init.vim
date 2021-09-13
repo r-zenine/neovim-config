@@ -1,7 +1,7 @@
 "*****************************************************************************
 " Vim-PLug core
 "*****************************************************************************
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/nvim/pack/plug/start')
 " Theme for neovim.
 Plug 'Th3Whit3Wolf/space-nvim'
 " Config helpers 
@@ -60,7 +60,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 """"""""""""""""""""""""""""""""
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
-Plug 'nvim-lua/completion-nvim' 
+Plug 'hrsh7th/nvim-compe'
 Plug 'ray-x/navigator.lua'
 
 
@@ -76,7 +76,6 @@ Plug 'nvim-telescope/telescope-dap.nvim'
 "            Tests             "
 """"""""""""""""""""""""""""""""
 Plug 'janko-m/vim-test'
-Plug 'rcarriga/vim-ultest'
 
 """"""""""""""""""""""""""""""""
 "        visual-leader         "
@@ -113,13 +112,13 @@ Plug 'edolphin-ydf/goimpl.nvim'
 Plug 'folke/lua-dev.nvim'
 
 " Python
-Plug 'rafi/vim-venon'
+Plug 'rafi/vim-venom', { 'for': 'python' }
+
 
 " Scala
 Plug 'scalameta/nvim-metals' " TODO setup nvim metals for scala
 
 " My plugins
-Plug '~/.config/nvim/pack/tlbd'
 call plug#end()
 
 lua require("which-key").setup ()

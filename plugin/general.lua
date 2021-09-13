@@ -35,6 +35,7 @@ opt.smartcase=true
 opt.incsearch=true
 opt.scrolloff=8
 opt.updatetime=500                 -- Faster completion
+opt.completeopt = "menuone,noinsert"
 opt.timeoutlen=250                 -- By default timeoutlen is 1000 ms
 opt.clipboard='unnamedplus'        -- Copy paste between vim and everything else
 opt.lazyredraw=true                -- improve scrolling performance when navigating through large results
@@ -55,6 +56,7 @@ local wildignores = {
     '*.swp',
     '*.zip',
     '*/plugged/*',
+    '*/pack/plug*',
     '*/node_modules/*',
     '*.swp'}
 utils.insert_all(opt.wildignore, wildignores)
