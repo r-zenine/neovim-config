@@ -75,6 +75,7 @@ function M.prelude_attach(client, bufnr)
            vsnip = false;
            ultisnips = false;
            luasnip = false;
+           orgmode = true;
        };
     }
 end
