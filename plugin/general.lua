@@ -12,7 +12,7 @@ opt.termguicolors=true
 opt.background='dark'
 opt.guifont='Fira Code,Retina:h14'
 
-cmd('colorscheme space-nvim')
+cmd('colorscheme github_dark')
 
 opt.hidden=true                    -- Required to keep multiple buffers open in the background
 opt.relativenumber=true            -- display relative numbers
