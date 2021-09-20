@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
     -- Colorscheme
     use 'Th3Whit3Wolf/space-nvim'
     use 'EdenEast/nightfox.nvim'
-    use "projekt0n/github-nvim-theme"
+    use "rafamadriz/neon"
     -- Config helper
     use 'svermeulen/vimpeccable'
     use 'b0o/mapx.lua'

@@ -12,7 +12,8 @@ opt.termguicolors=true
 opt.background='dark'
 opt.guifont='Fira Code,Retina:h14'
 
-cmd('colorscheme github_dark')
+vim.g.neon_style = "doom"
+cmd('colorscheme neon')
 
 opt.hidden=true                    -- Required to keep multiple buffers open in the background
 opt.relativenumber=true            -- display relative numbers
