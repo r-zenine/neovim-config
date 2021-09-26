@@ -47,7 +47,7 @@ function M.on_attach(client, bufnr)
         kb.local_bind("Format", 'f', '"<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts_kb)
     end
 
-    if client.resolved_capabilitieseexecute_command then
+    if client.resolved_capabilities.eexecute_command then
         kb.local_bind("Execute Command", 'e', '"<cmd>lua vim.lsp.buf.execute_command()<CR>', opts_kb)
     end
     kb.local_section('t', 'Tests')

@@ -4,12 +4,14 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 ]])
+
+local path_local_plugins = vim.fn.stdpath('config')..'/my_plugins/'
+local path_tlbd = path_local_plugins..'tlbd'
+
 return require('packer').startup(function(use)
     -- Packer to avoid removing it when launching :PackerSync
     use 'wbthomason/packer.nvim'
     -- Colorscheme
-    use 'Th3Whit3Wolf/space-nvim'
-    use 'EdenEast/nightfox.nvim'
     use "rafamadriz/neon"
     -- Config helper
     use 'svermeulen/vimpeccable'
@@ -29,7 +31,8 @@ return require('packer').startup(function(use)
         requires = {"nvim-telescope/telescope.nvim"},
         config = function() require"telescope".load_extension("fzf") end}
     -- dev icons
-    use 'ryanoasis/vim-devicons'
+    use 'kyazdani42/nvim-web-devicons'
+
     -- Windows and tabs
     use "beauwilliams/focus.nvim"
     use { "folke/twilight.nvim", config = function() require("twilight").setup {} end }
@@ -83,7 +86,11 @@ return require('packer').startup(function(use)
             'nvim-telescope/telescope.nvim',
             'mfussenegger/nvim-dap',
         } }
-    use { 'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use {'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+
+    --sql
+    use 'tpope/vim-dadbod'
+    use {'kristijanhusak/vim-dadbod-ui', requires = {'tpope/vim-dadbod'}}
 
     -- Go
     use {'ray-x/go.nvim',
@@ -114,4 +121,7 @@ return require('packer').startup(function(use)
     use {'rafi/vim-venom',  ft = 'python'}
     -- scala
     use 'scalameta/nvim-metals'
+    -- tlbd
+    use {path_tlbd,
+        requires = {"tami5/sql.nvim", "nvim-telescope/telescope.nvim"}}
 end)
