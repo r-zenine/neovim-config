@@ -77,10 +77,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/focus.nvim"
   },
-  ["github-nvim-theme"] = {
-    loaded = true,
-    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/github-nvim-theme"
-  },
   ["go.nvim"] = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/go.nvim"
@@ -122,10 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/neoterm"
   },
-  ["nightfox.nvim"] = {
-    loaded = true,
-    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
-  },
   ["nvim-compe"] = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/nvim-compe"
@@ -159,6 +151,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
   ["org-bullets.nvim"] = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/org-bullets.nvim"
@@ -182,10 +178,6 @@ _G.packer_plugins = {
   ["rust-tools.nvim"] = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/rust-tools.nvim"
-  },
-  ["space-nvim"] = {
-    loaded = true,
-    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/space-nvim"
   },
   ["sql.nvim"] = {
     loaded = true,
@@ -214,14 +206,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
+  tlbd = {
+    loaded = true,
+    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/tlbd"
+  },
   ["twilight.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0" },
     loaded = true,
     path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/twilight.nvim"
   },
-  ["vim-devicons"] = {
+  ["vim-dadbod"] = {
     loaded = true,
-    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/vim-devicons"
+    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/vim-dadbod"
+  },
+  ["vim-dadbod-ui"] = {
+    loaded = true,
+    path = "/Users/ryad/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -262,26 +262,26 @@ time([[Setup for nvim-dap-virtual-text]], false)
 time([[packadd for nvim-dap-virtual-text]], true)
 vim.cmd [[packadd nvim-dap-virtual-text]]
 time([[packadd for nvim-dap-virtual-text]], false)
--- Config for: twilight.nvim
-time([[Config for twilight.nvim]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
-time([[Config for twilight.nvim]], false)
--- Config for: goimpl.nvim
-time([[Config for goimpl.nvim]], true)
-try_loadstring("\27LJ\2\nK\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\vgoimpl\19load_extension\14telescope\frequire\0", "config", "goimpl.nvim")
-time([[Config for goimpl.nvim]], false)
--- Config for: telescope-dap.nvim
-time([[Config for telescope-dap.nvim]], true)
-try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bdap\19load_extension\14telescope\frequire\0", "config", "telescope-dap.nvim")
-time([[Config for telescope-dap.nvim]], false)
 -- Config for: telescope-fzf-native.nvim
 time([[Config for telescope-fzf-native.nvim]], true)
 try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bfzf\19load_extension\14telescope\frequire\0", "config", "telescope-fzf-native.nvim")
 time([[Config for telescope-fzf-native.nvim]], false)
+-- Config for: twilight.nvim
+time([[Config for twilight.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
+time([[Config for twilight.nvim]], false)
+-- Config for: telescope-dap.nvim
+time([[Config for telescope-dap.nvim]], true)
+try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bdap\19load_extension\14telescope\frequire\0", "config", "telescope-dap.nvim")
+time([[Config for telescope-dap.nvim]], false)
 -- Config for: telescope-frecency.nvim
 time([[Config for telescope-frecency.nvim]], true)
 try_loadstring("\27LJ\2\nM\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\rfrecency\19load_extension\14telescope\frequire\0", "config", "telescope-frecency.nvim")
 time([[Config for telescope-frecency.nvim]], false)
+-- Config for: goimpl.nvim
+time([[Config for goimpl.nvim]], true)
+try_loadstring("\27LJ\2\nK\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\vgoimpl\19load_extension\14telescope\frequire\0", "config", "goimpl.nvim")
+time([[Config for goimpl.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
