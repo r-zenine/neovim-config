@@ -1,4 +1,4 @@
-local lsp_prelude=require('configs.lsp_prelude')
+local lsp_prelude = require('configs.lsp_prelude')
 local kb = require'prelude.keybindings'
 
 local rust_root_path = vim.fn.stdpath('data')..'/lspinstall/rust/'
@@ -8,7 +8,7 @@ local rust_analyzer_binary = rust_root_path..'rust-analyzer'
 local M = {}
 
 local function on_attach(client, bufnr)
-    lsp_prelude.on_attach(client, bufnr)
+    lsp_prelude.prelude_attach(client, bufnr)
     local opts_kb = {noremap = false, silent = false, buffer = bufnr}
     kb.local_section("Debug", "D")
     kb.local_bind("Debug", "Dd", ":RustDebuggables<CR>", opts_kb)
@@ -23,8 +23,6 @@ local rust_config = {
 }
 
 function M.cargo_keybindings(bufnr)
-    print("buffer")
-    print(bufnr)
     local opts_kb = {noremap = false, silent = false, buffer = bufnr}
     kb.local_section("Dependencies", "D")
     kb.local_bind("Update Dependency", "Du", ":lua require'crates'.update_crate()<cr>", opts_kb)

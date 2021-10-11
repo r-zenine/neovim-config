@@ -124,4 +124,6 @@ return require('packer').startup(function(use)
     -- tlbd
     use {path_tlbd,
         requires = {"tami5/sql.nvim", "nvim-telescope/telescope.nvim"}}
+    -- sessions
+    use 'rmagatti/auto-session'
 end)
