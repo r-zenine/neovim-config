@@ -59,6 +59,9 @@ return require('packer').startup(function(use)
 
     -- tests
     use 'janko-m/vim-test'
+    -- linters 
+    use 'mfussenegger/nvim-lint'
+ 
     -- visual leader
     use 'folke/which-key.nvim'
 
