@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- Colorscheme
     use "rafamadriz/neon"
+    use 'luukvbaal/stabilize.nvim'
     -- Config helper
     use 'svermeulen/vimpeccable'
     use 'b0o/mapx.lua'
@@ -23,13 +24,10 @@ return require('packer').startup(function(use)
     use {'nvim-telescope/telescope-project.nvim',
         requires = {"nvim-telescope/telescope.nvim"}}
 
-    use {"nvim-telescope/telescope-frecency.nvim",
-        requires = {"tami5/sql.nvim", "nvim-telescope/telescope.nvim"},
-        config = function() require"telescope".load_extension("frecency") end}
-
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make',
         requires = {"nvim-telescope/telescope.nvim"},
         config = function() require"telescope".load_extension("fzf") end}
+    use {'ThePrimeagen/harpoon', requires = { 'nvim-lua/plenary.nvim' } }
     -- dev icons
     use 'kyazdani42/nvim-web-devicons'
 
@@ -54,9 +52,6 @@ return require('packer').startup(function(use)
 
     -- dap
     use 'mfussenegger/nvim-dap'
-    use {'theHamsta/nvim-dap-virtual-text',
-        requires = {"nvim-telescope/telescope.nvim"},
-        setup = function () vim.g.dap_virtual_text = true end}
     use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
     use {'nvim-telescope/telescope-dap.nvim',
         requires = {"nvim-telescope/telescope.nvim"},
@@ -86,7 +81,8 @@ return require('packer').startup(function(use)
             'nvim-telescope/telescope.nvim',
             'mfussenegger/nvim-dap',
         } }
-    use {'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use { 'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+
 
     --sql
     use 'tpope/vim-dadbod'
@@ -99,7 +95,6 @@ return require('packer').startup(function(use)
             'nvim-treesitter/nvim-treesitter',
             'mfussenegger/nvim-dap',
             'mfussenegger/nvim-dap-ui',
-            'mfussenegger/nvim-dap-virtual-text',
         } }
     use {
 		'edolphin-ydf/goimpl.nvim',

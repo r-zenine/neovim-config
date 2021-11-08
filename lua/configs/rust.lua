@@ -19,7 +19,9 @@ end
 local rust_config = {
       on_attach = on_attach,
       cmd = {rust_analyzer_binary};
-      settings = {},
+      settings = {
+        ["rust-analyzer.rustfmt.enableRangeFormatting"] = false,
+      },
 }
 
 function M.cargo_keybindings(bufnr)
@@ -35,11 +37,5 @@ function M.setup()
     require('rust-tools').setup({server = rust_config})
     require('crates').setup()
 end
-
-vim.api.nvim_command([[
-    augroup CargoUpgradeCrates
-        autocmd BufEnter Cargo.toml :lua require("prelude.keybindings").cargo_keybindings(<buffer>)
-    augroup END
-]])
 
 return M
