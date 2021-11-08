@@ -24,8 +24,8 @@ local function get_bookmarks()
 end
 
 local function action_change_directory()
-    local actions = require("telescope.actions")
-    local entry = actions.get_selected_entry()
+    local action_state = require "telescope.actions.state"
+    local entry = action_state.get_selected_entry()
     vim.cmd(string.format(":cd %s", entry.value))
     vim.cmd(string.format(":tcd %s", entry.value))
     vim.cmd(":q!")
