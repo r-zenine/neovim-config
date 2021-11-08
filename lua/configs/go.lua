@@ -21,9 +21,8 @@ local function on_attach(client, bufnr)
 
     kb.local_section("D", "Debug")
     kb.local_bind("Start", "Ds", ":GoDebug<CR>", opts_kb)
-    kb.local_bind("Nearest", "Dn", ":GoDebug nearest<CR>", opts_kb)
-    kb.local_bind("Breakpoint", "Db", ":GoBreakToggle<CR>", opts_kb)
-    kb.local_bind("Conditional Breakpoint", "Dc", ":GoBreakCondition<CR>", opts_kb)
+    kb.local_bind("Debug Nearest", "Dn", ":GoDebug nearest<CR>", opts_kb)
+    kb.local_bind("Debug Test", "Dt", ":GoDebug test<CR>", opts_kb)
     kb.local_bind("Stop", "DS", ":GoDbgStop<CR>", opts_kb)
 end
 

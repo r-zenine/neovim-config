@@ -60,6 +60,18 @@ function M.on_attach(client, bufnr)
     kb.local_bind('Send Line', 'sl', ':TREPLSendLine<CR>', opts_kb)
     kb.local_bind('Send Selection', 'ss', ':TREPLSendSelection<CR>', opts_kb)
     kb.local_bind('Send File', 'sf', ':TREPLSendFile<CR>', opts_kb)
+
+    kb.local_section('D', 'Debug')
+    kb.local_bind('Continue', 'Dc', ':lua require\'dap\'.continue()<CR>', opts_kb)
+    kb.local_bind('Step Over', 'Dso', ':lua require\'dap\'.step_over()<CR>', opts_kb)
+    kb.local_bind('Step Into', 'Dsi', ':lua require\'dap\'.step_into()<CR>', opts_kb)
+    kb.local_bind('Step Out', 'DsO', ':lua require\'dap\'.step_out()<CR>', opts_kb)
+    kb.local_section("Db", "Breakpoints")
+    kb.local_bind('Breakpoint', 'Dbb', ':lua require\'dap\'.toggle_breakpoint()<CR>', opts_kb)
+    kb.local_bind('Conditional Breakpoint', 'Dbc', ':lua require\'dap\'.set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>', opts_kb)
+    kb.local_bind('Log Breakpoint', 'Dbl',':lua require\'dap\'.set_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'))<CR>', opts_kb)
+    kb.local_bind('Repl', 'Dr',':lua require\'dap\'.repl.open()<CR>', opts_kb)
+    kb.local_bind('Run Last', 'DL',':lua require\'dap\'.run_last()<CR>', opts_kb)
 end
 
 
