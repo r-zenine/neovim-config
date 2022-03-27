@@ -1,3 +1,10 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/stat/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -11,43 +18,65 @@ local path_tlbd = path_local_plugins..'tlbd'
 return require('packer').startup(function(use)
     -- Packer to avoid removing it when launching :PackerSync
     use 'wbthomason/packer.nvim'
-    -- Colorscheme
-    use "rafamadriz/neon"
-    use 'luukvbaal/stabilize.nvim'
+    -- Colorscheme & look n feel
+    use {
+        "rafamadriz/neon",
+        'kyazdani42/nvim-web-devicons',
+        'luukvbaal/stabilize.nvim'
+    }
+    -- Windows and tabs
+    use { "beauwilliams/focus.nvim", config = function() require("focus").setup() end }
+
     -- Config helper
     use 'svermeulen/vimpeccable'
-    use 'b0o/mapx.lua'
-    --         Telescope
+
+    -- Telescope
     use {'nvim-telescope/telescope.nvim',
         requires = {'nvim-lua/plenary.nvim'} }
-
-    use {'nvim-telescope/telescope-project.nvim',
-        requires = {"nvim-telescope/telescope.nvim"}}
-
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make',
         requires = {"nvim-telescope/telescope.nvim"},
         config = function() require"telescope".load_extension("fzf") end}
-    use {'ThePrimeagen/harpoon', requires = { 'nvim-lua/plenary.nvim' } }
-    -- dev icons
-    use 'kyazdani42/nvim-web-devicons'
 
-    -- Windows and tabs
-    use "beauwilliams/focus.nvim"
-    use { "folke/twilight.nvim", config = function() require("twilight").setup {} end }
+    -- navigation & files management
+    use {'ThePrimeagen/harpoon', requires = { 'nvim-lua/plenary.nvim' } }
+    use {'ThePrimeagen/refactoring.nvim', requires = { 'nvim-lua/plenary.nvim', "nvim-treesitter/nvim-treesitter"} }
+
     -- editing helpers
     -- Expands the use of . to repeat last commands
     use 'tpope/vim-repeat'
     -- Comments
     use 'b3nj5m1n/kommentary'
     -- Git
+    -- TODO get rid of fugitive
     use 'tpope/vim-fugitive'
     use 'TimUntersberger/neogit'
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+    --
     -- teesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     -- LSP
-    use 'neovim/nvim-lspconfig'
-    use 'kabouzeid/nvim-lspinstall'
-    use 'hrsh7th/nvim-compe'
+    use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
+    use 'williamboman/nvim-lsp-installer'
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"},
+    }
+    -- snippets
+    use {'L3MON4D3/LuaSnip'}
+    -- completion setup
+    use {
+        'hrsh7th/nvim-cmp',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+    }
+    -- improvements to the lsp ui
     use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
 
     -- dap
@@ -56,16 +85,26 @@ return require('packer').startup(function(use)
     use {'nvim-telescope/telescope-dap.nvim',
         requires = {"nvim-telescope/telescope.nvim"},
         config = function() require"telescope".load_extension("dap") end}
+    use {'theHamsta/nvim-dap-virtual-text',
+        requires= { 'nvim-treesitter/nvim-treesitter', 'mfussenegger/nvim-dap'},
+        config = function() require("nvim-dap-virtual-text").setup() end }
 
     -- tests
     use 'janko-m/vim-test'
-    -- linters 
-    use 'mfussenegger/nvim-lint'
- 
+
     -- visual leader
     use 'folke/which-key.nvim'
 
     -- orgmode
+    use {
+      "vhyrro/neorg",
+      config = function()
+        require("my_neorg").setup()
+      end,
+      requires = "nvim-lua/plenary.nvim",
+    }
+    use "nvim-neorg/neorg-telescope"
+
     use 'kristijanhusak/orgmode.nvim'
     use 'akinsho/org-bullets.nvim'
 
@@ -113,13 +152,13 @@ return require('packer').startup(function(use)
 	}
 
     -- lua
-    use "folke/lua-dev.nvim"
+    use {"folke/lua-dev.nvim"}
 
     -- python
     use {'rafi/vim-venom',  ft = 'python'}
     -- scala
-    use 'scalameta/nvim-metals'
-    -- tlbd
+    use {'scalameta/nvim-metals', ft = 'scala'}
+    -- tlbd -- TODO remove fugitive dependency
     use {path_tlbd,
         requires = {"tami5/sql.nvim", "nvim-telescope/telescope.nvim"}}
     -- sessions

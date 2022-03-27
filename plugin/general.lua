@@ -36,7 +36,7 @@ opt.smartcase=true
 opt.incsearch=true
 opt.scrolloff=8
 opt.updatetime=500                 -- Faster completion
-opt.completeopt = "menuone,noinsert,noselect"
+opt.completeopt = "menuone,noinsert,noselect,menu"
 opt.timeoutlen=250                 -- By default timeoutlen is 1000 ms
 opt.clipboard='unnamedplus'        -- Copy paste between vim and everything else
 opt.lazyredraw=true                -- improve scrolling performance when navigating through large results
@@ -65,3 +65,6 @@ utils.insert_all(opt.wildignore, wildignores)
 g.mapleader=' '
 g.maplocalleader=','
 
+-- Remove all trailing
+-- https://vim.fandom.com/wiki/Remove_unwanted_spaces
+vim.cmd [[autocmd BufWritePre *.pl %s/\s\+$//e]]

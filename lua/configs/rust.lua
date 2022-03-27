@@ -20,7 +20,6 @@ local rust_config = {
       on_attach = on_attach,
       cmd = {rust_analyzer_binary};
       settings = {
-        ["rust-analyzer.rustfmt.enableRangeFormatting"] = false,
       },
 }
 

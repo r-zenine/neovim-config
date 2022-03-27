@@ -8,8 +8,9 @@ function M.on_attach(client, bufnr)
     local opts_kb = {noremap = false, silent = false, buffer = bufnr}
 
     kb.local_bind("Rename", 'r',  '<cmd>lua vim.lsp.buf.rename()<CR>', opts_kb)
-    kb.local_bind("Code Action", 'c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts_kb)
+    kb.local_bind("Code Action", 'c', '<cmd>Telescope lsp_code_actions theme=cursor<CR>', opts_kb)
 
+    -- TODO move all of these to use telescope
     kb.local_section("g", "Go To")
     kb.local_bind("Definition", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts_kb)
     kb.local_bind("Declaration", "gc", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts_kb)
@@ -74,22 +75,8 @@ function M.on_attach(client, bufnr)
     kb.local_bind('Run Last', 'DL',':lua require\'dap\'.run_last()<CR>', opts_kb)
 end
 
-
 function M.prelude_attach(client, bufnr)
    M.on_attach(client, bufnr)
-   require'compe'.setup {
-       source = {
-           path = true;
-           buffer = true;
-           calc = true;
-           nvim_lsp = true;
-           nvim_lua = true;
-           vsnip = false;
-           ultisnips = false;
-           luasnip = false;
-           orgmode = true;
-       };
-    }
 end
 
 return M

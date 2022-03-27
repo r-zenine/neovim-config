@@ -18,12 +18,6 @@ local function on_attach(client, bufnr)
     kb.local_bind("Switch", "FS", [[:GoFillSwitch<CR>]], opts_kb)
     kb.local_bind("Err", "Fe", [[:GoIfErr<CR>]], opts_kb)
     kb.local_bind("Struct Comment", "Fc", [[:lua.require('go.comment').gen()<CR>]], opts_kb)
-
-    kb.local_section("D", "Debug")
-    kb.local_bind("Start", "Ds", ":GoDebug<CR>", opts_kb)
-    kb.local_bind("Debug Nearest", "Dn", ":GoDebug nearest<CR>", opts_kb)
-    kb.local_bind("Debug Test", "Dt", ":GoDebug test<CR>", opts_kb)
-    kb.local_bind("Stop", "DS", ":GoDbgStop<CR>", opts_kb)
 end
 
 local go_config = {
